@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Birkie 2027 · 50K skate</title>
+<meta name="description" content="Training for the American Birkebeiner 50K skate, February 2027.">
+<meta property="og:title" content="Birkie 2027 · 50K skate">
+<meta property="og:description" content="31 weeks of training for the American Birkebeiner, tracked by stimulus.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0B1620">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;600;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  .bk{
+    --snow:#E6EDF2; --paper:#FFFFFF; --night:#0B1620;
+    --ink:#0B1620; --ink-2:#41525E; --muted:#7A8B96; --muted-d:#8FA3B0;
+    --rule:#CCD9E1; --rule-2:#E5EDF2;
+    --green:#2E7C55; --blue:#1D5C9E; --violet:#6B4B92; --red:#C23A2E; --gold:#BF8511;
+    --disp:'Big Shoulders Display','Arial Narrow',sans-serif;
+    --body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --mono:'IBM Plex Mono','SF Mono',Menlo,monospace;
+    font-family:var(--body); color:var(--ink); line-height:1.45;
+    max-width:1120px; margin:0 auto; -webkit-font-smoothing:antialiased;
+  }
+  .bk *{box-sizing:border-box}
+  .bk button{font-family:inherit}
+
+  .bk-hero{
+    background:var(--night);
+    background-image:
+      radial-gradient(120% 140% at 8% -30%, rgba(46,124,85,.34) 0%, transparent 58%),
+      radial-gradient(90% 120% at 96% 120%, rgba(29,92,158,.30) 0%, transparent 60%);
+    color:#fff;padding:30px 30px 26px;border-radius:3px;
+    display:flex;justify-content:space-between;align-items:flex-end;gap:28px;flex-wrap:wrap;
+    position:relative;overflow:hidden;
+  }
+  .bk-hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;
+    background:linear-gradient(90deg,var(--green) 0 23%,var(--blue) 23% 61%,var(--violet) 61% 87%,var(--red) 87% 100%)}
+  .bk-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+  .bk-title{font-family:var(--disp);font-weight:800;font-size:clamp(40px,7.4vw,76px);line-height:.82;text-transform:uppercase;margin:10px 0 0}
+  .bk-facts{margin-top:14px;display:flex;gap:22px;flex-wrap:wrap}
+  .bk-fact{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.62)}
+  .bk-fact b{display:block;color:#fff;font-size:15px;font-weight:500;margin-top:2px}
+  .bk-clock{display:flex;align-items:center;gap:18px}
+  .bk-ring{position:relative;width:96px;height:96px;flex-shrink:0}
+  .bk-ring svg{transform:rotate(-90deg);display:block}
+  .bk-ringtxt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .bk-ringtxt b{font-family:var(--disp);font-weight:600;font-size:26px;line-height:1;color:#fff}
+  .bk-ringtxt span{font-family:var(--mono);font-size:8px;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:3px}
+  .bk-days b{font-family:var(--disp);font-weight:800;font-size:clamp(44px,7vw,68px);line-height:.82;display:block}
+  .bk-days span{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+
+  .bk-card{background:var(--paper);border:1px solid var(--rule);border-radius:3px}
+  .bk-season{margin-top:22px;padding:18px 18px 10px}
+  .bk-cap{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+  .bk-cap h2{font-family:var(--disp);font-weight:600;font-size:21px;text-transform:uppercase;letter-spacing:.03em;margin:0}
+  .bk-cap p{margin:3px 0 0;font-size:12.5px;color:var(--muted);max-width:60ch}
+  .bk-banked{font-family:var(--mono);font-size:12px;color:var(--ink-2);white-space:nowrap}
+  .bk-banked b{font-family:var(--disp);font-weight:800;font-size:28px;color:var(--ink);vertical-align:-3px;margin-right:5px}
+
+  .bk-phases{display:flex;gap:2px;margin-bottom:7px}
+  .bk-ph{height:4px;border-radius:99px}
+  .bk-phlab{display:flex;gap:2px;margin-bottom:11px}
+  .bk-phlab span{font-family:var(--mono);font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+
+  .bk-chartwrap{position:relative}
+  .bk-svg{display:block;width:100%;height:auto;overflow:visible;touch-action:manipulation}
+  .bk-hit{cursor:pointer}
+  .bk-hit:focus-visible{outline:2px solid var(--red);outline-offset:-2px}
+  .bk-tip{position:absolute;pointer-events:none;opacity:0;transform:translate(-50%,-100%);
+    background:var(--night);color:#fff;border-radius:3px;padding:7px 10px;white-space:nowrap;z-index:5;
+    font-family:var(--mono);font-size:11px;line-height:1.5;transition:opacity .12s ease}
+  .bk-tip b{font-family:var(--body);font-weight:600;font-size:12px}
+  .bk-tip i{font-style:normal;color:rgba(255,255,255,.55)}
+
+  .bk-grid{display:grid;grid-template-columns:minmax(0,1.72fr) minmax(0,1fr);gap:18px;margin-top:18px;align-items:start}
+  .bk-chead{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 18px;border-bottom:1px solid var(--rule-2);flex-wrap:wrap}
+  .bk-wk{font-family:var(--disp);font-weight:800;font-size:34px;line-height:.9;text-transform:uppercase}
+  .bk-dates{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:4px}
+  .bk-badge{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;padding:5px 10px;border-radius:99px;color:#fff}
+  .bk-nav{display:flex;gap:5px}
+  .bk-nav button{font-size:15px;width:32px;height:32px;border:1px solid var(--rule);background:var(--paper);border-radius:3px;cursor:pointer;color:var(--ink-2);line-height:1}
+  .bk-nav button:hover:not(:disabled){background:var(--snow);border-color:var(--muted-d)}
+  .bk-nav button:disabled{opacity:.28;cursor:default}
+  .bk-today{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--rule);background:var(--paper);border-radius:3px;padding:0 10px;height:32px;cursor:pointer;color:var(--ink-2)}
+  .bk-today:hover{background:var(--snow)}
+
+  .bk-rows{padding:2px 18px 14px}
+  .bk-row{padding:16px 0;border-bottom:1px solid var(--rule-2)}
+  .bk-row:last-child{border-bottom:0}
+  .bk-rtop{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+  .bk-rname{display:flex;align-items:center;gap:9px;min-width:0}
+  .bk-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+  .bk-n{font-weight:600;font-size:15px}
+  .bk-of{font-family:var(--mono);font-size:12px;color:var(--muted)}
+  .bk-hint{font-size:12.5px;color:var(--muted);margin-top:7px;max-width:60ch}
+  .bk-bar{height:4px;background:var(--rule-2);border-radius:99px;overflow:hidden;margin-top:11px}
+  .bk-fill{height:100%;width:0;border-radius:99px;transition:width .4s cubic-bezier(.4,0,.2,1)}
+
+  .bk-ctl{display:flex;align-items:center;gap:7px;flex-shrink:0}
+  .bk-step{font-family:var(--mono);font-size:13px;height:33px;min-width:38px;padding:0 9px;border:1px solid var(--rule);background:var(--paper);border-radius:3px;cursor:pointer;color:var(--ink-2)}
+  .bk-step:hover{background:var(--snow);border-color:var(--muted-d);color:var(--ink)}
+  .bk-val{font-family:var(--mono);font-size:15px;font-weight:500;min-width:66px;text-align:center}
+
+  .bk-pips{display:flex;gap:5px}
+  .bk-pip{width:30px;height:30px;border-radius:3px;border:1.5px solid var(--rule);background:var(--paper);cursor:pointer;padding:0;transition:transform .1s ease}
+  .bk-pip:hover{transform:translateY(-1px)}
+  .bk-pip[data-on="1"]{border-color:transparent}
+  .bk-pip:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+
+  .bk-chk{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;border:1.5px solid var(--rule);background:var(--paper);border-radius:3px;padding:7px 11px;cursor:pointer;color:var(--ink-2);white-space:nowrap}
+  .bk-chk:hover:not(:disabled){border-color:var(--muted-d)}
+  .bk-chk[data-on="1"]{border-color:currentColor;font-weight:600}
+
+  .bk-side{display:flex;flex-direction:column;gap:18px}
+  .bk-shead{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);padding:15px 18px 0}
+  .bk-stats{display:grid;grid-template-columns:1fr 1fr}
+  .bk-stat{padding:14px 18px 16px}
+  .bk-stat:nth-child(odd){border-right:1px solid var(--rule-2)}
+  .bk-stat:nth-child(-n+4){border-bottom:1px solid var(--rule-2)}
+  .bk-stat b{font-family:var(--disp);font-weight:800;font-size:34px;line-height:.9;display:block}
+  .bk-stat span{font-size:12px;color:var(--ink-2);display:block;margin-top:6px;line-height:1.3}
+  .bk-stat em{font-style:normal;font-family:var(--mono);font-size:10.5px;color:var(--muted);display:block;margin-top:3px}
+
+  .bk-feed{padding:6px 18px 16px}
+  .bk-act{display:flex;gap:11px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--rule-2)}
+  .bk-act:last-child{border-bottom:0}
+  .bk-act i{font-style:normal;width:7px;height:7px;border-radius:50%;flex-shrink:0;transform:translateY(-2px)}
+  .bk-act div{min-width:0;flex:1}
+  .bk-act b{display:block;font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .bk-act span{font-family:var(--mono);font-size:10.5px;color:var(--muted)}
+  .bk-empty{font-size:12.5px;color:var(--muted);padding:6px 0 4px}
+  .bk-sync{padding:13px 18px;border-top:1px solid var(--rule-2);font-family:var(--mono);font-size:10.5px;color:var(--muted);line-height:1.6}
+  .bk-sync b{color:var(--green);font-weight:500}
+
+  /* course */
+  .bk-course{margin-top:18px;padding:18px 18px 6px}
+  .bk-keys{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:var(--rule-2);border:1px solid var(--rule-2);border-radius:3px;margin:16px 0 4px}
+  .bk-key{background:var(--paper);padding:13px 15px}
+  .bk-key b{font-family:var(--disp);font-weight:800;font-size:30px;line-height:.9;display:block}
+  .bk-key span{font-size:12.5px;color:var(--ink-2);display:block;margin-top:6px;line-height:1.35}
+  .bk-tblwrap{overflow-x:auto;margin-top:14px}
+  table.bk-tbl{border-collapse:collapse;width:100%;font-size:12.5px;min-width:600px}
+  .bk-tbl th{font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);
+    text-align:right;padding:7px 9px;border-bottom:1px solid var(--rule);font-weight:400;white-space:nowrap}
+  .bk-tbl th:first-child{text-align:left}
+  .bk-tbl td{padding:8px 9px;border-bottom:1px solid var(--rule-2);text-align:right;font-family:var(--mono);font-size:12px;white-space:nowrap}
+  .bk-tbl td:first-child{text-align:left;font-family:var(--body);font-weight:500}
+  .bk-tbl tr:last-child td{border-bottom:0;font-weight:600;background:#F4F8FA}
+  .bk-hot{color:var(--red);font-weight:600}
+  .bk-cool{color:var(--green)}
+
+  .bk-pub{margin-top:18px;padding:0 0 16px}
+  .bk-pubbody{padding:6px 18px 0}
+  .bk-pubbody p{font-size:12.5px;color:var(--muted);margin:0 0 12px;max-width:78ch}
+  .bk-pubrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+  .bk-btn{font-family:var(--body);font-size:13px;font-weight:500;border:1.5px solid var(--ink);background:var(--ink);
+    color:#fff;border-radius:3px;padding:9px 15px;cursor:pointer}
+  .bk-btn:hover{background:#16242F}
+  .bk-btn.ghost{background:var(--paper);color:var(--ink-2);border-color:var(--rule)}
+  .bk-btn.ghost:hover{background:var(--snow);border-color:var(--muted-d);color:var(--ink)}
+  .bk-ok{font-family:var(--mono);font-size:11px;color:var(--green);opacity:0;transition:opacity .2s}
+  .bk-ok.on{opacity:1}
+  #bk-json{width:100%;height:150px;font-family:var(--mono);font-size:11px;line-height:1.5;color:var(--ink-2);
+    background:#F4F8FA;border:1px solid var(--rule);border-radius:3px;padding:11px;resize:vertical}
+  .bk-foot{margin-top:20px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;
+    font-size:12.5px;color:var(--muted);border-top:1px solid var(--rule);padding-top:14px}
+  .bk-legend{display:flex;gap:15px;flex-wrap:wrap;align-items:center}
+  .bk-lg{display:inline-flex;align-items:center;gap:6px;font-size:12px}
+  .bk-lg i{width:8px;height:8px;border-radius:50%;display:inline-block}
+  .bk-reset{font-family:var(--mono);font-size:11px;color:var(--muted);background:none;border:0;cursor:pointer;text-decoration:underline;padding:0}
+
+  @media (max-width:880px){ .bk-grid{grid-template-columns:1fr} }
+  @media (max-width:560px){
+    .bk-hero{padding:22px 18px 20px}
+    .bk-season,.bk-course{padding:14px 12px 8px}
+    .bk-rows{padding:2px 14px 12px}
+    .bk-phlab{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){ .bk-fill,.bk-pip{transition:none} }
+</style>
+
+<style>
+  html,body{margin:0;padding:0;background:#E6EDF2}
+  body{padding:18px 14px 40px;
+    background-image:repeating-linear-gradient(180deg,rgba(255,255,255,.5) 0 1px,transparent 1px 7px)}
+</style>
+</head>
+<body>
+<div class="bk">
+
+  <div class="bk-hero">
+    <div>
+      <div class="bk-eyebrow">Saturday 27 February 2027 · Cable → Hayward, Wisconsin</div>
+      <h1 class="bk-title">American<br>Birkebeiner</h1>
+      <div class="bk-facts">
+        <div class="bk-fact">Event<b>50K skate</b></div>
+        <div class="bk-fact">Climbing<b>2,179 m · 47 m/km</b></div>
+        <div class="bk-fact">Wave<b>10 · 10:10 start</b></div>
+        <div class="bk-fact">Target<b>4:30 – 5:15</b></div>
+      </div>
+    </div>
+    <div class="bk-clock">
+      <div class="bk-ring">
+        <svg width="96" height="96" viewBox="0 0 96 96">
+          <circle cx="48" cy="48" r="41" fill="none" stroke="rgba(255,255,255,.13)" stroke-width="6"/>
+          <circle id="bk-ringarc" cx="48" cy="48" r="41" fill="none" stroke="#4FB07C" stroke-width="6"
+                  stroke-linecap="round" stroke-dasharray="257.6" stroke-dashoffset="257.6"/>
+        </svg>
+        <div class="bk-ringtxt"><b id="bk-ringpct">0%</b><span>this week</span></div>
+      </div>
+      <div class="bk-days"><b id="bk-days">—</b><span>days to the gun</span></div>
+    </div>
+  </div>
+
+  <div class="bk-card bk-season">
+    <div class="bk-cap">
+      <div>
+        <h2>The season, drawn as a course profile</h2>
+        <p>Height is the planned load for that week. The solid fill is what you actually banked. Tap a week to open it.</p>
+      </div>
+      <div class="bk-banked"><b id="bk-banked">0%</b>banked</div>
+    </div>
+    <div class="bk-phases" id="bk-phases"></div>
+    <div class="bk-phlab" id="bk-phlab"></div>
+    <div class="bk-chartwrap">
+      <svg class="bk-svg" id="bk-chart" viewBox="0 0 960 168" preserveAspectRatio="none" role="img" aria-label="Planned and completed training load by week"></svg>
+      <div class="bk-tip" id="bk-tip"></div>
+    </div>
+  </div>
+
+  <div class="bk-grid">
+    <div class="bk-card">
+      <div class="bk-chead">
+        <div>
+          <div class="bk-wk" id="bk-wknum">Week 1</div>
+          <div class="bk-dates" id="bk-wkdates">—</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap">
+          <span class="bk-badge" id="bk-badge">—</span>
+          <button class="bk-today" id="bk-todaybtn">Today</button>
+          <div class="bk-nav">
+            <button id="bk-prev" aria-label="Previous week">‹</button>
+            <button id="bk-next" aria-label="Next week">›</button>
+          </div>
+        </div>
+      </div>
+      <div class="bk-rows" id="bk-rows"></div>
+    </div>
+
+    <div class="bk-side">
+      <div class="bk-card">
+        <div class="bk-shead">Season to date</div>
+        <div class="bk-stats" id="bk-stats"></div>
+        <div class="bk-sync" id="bk-syncnote"></div>
+      </div>
+      <div class="bk-card">
+        <div class="bk-shead">What filled this week</div>
+        <div class="bk-feed" id="bk-feed"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bk-card bk-course">
+    <div class="bk-cap">
+      <div>
+        <h2>The course</h2>
+        <p>Official section data. The band shows the elevation range within each section — the trail is climbing and
+           descending constantly inside every one of them, so the true line is far busier than the envelope.</p>
+      </div>
+    </div>
+
+    <div class="bk-chartwrap">
+      <svg class="bk-svg" id="bk-course" viewBox="0 0 960 230" preserveAspectRatio="none" role="img" aria-label="Birkie skate course elevation by section"></svg>
+    </div>
+
+    <div class="bk-keys">
+      <div class="bk-key"><b>2,179 m</b><span>climbed in one morning — more than a three-day mountain trip</span></div>
+      <div class="bk-key"><b>39–56</b><span>metres per km, every single section. There is no easy half</span></div>
+      <div class="bk-key"><b>Section 8</b><span>steepest <em style="font-style:normal">and</em> fastest-required leg of the race — and it comes at 41 km</span></div>
+    </div>
+
+    <div class="bk-tblwrap">
+      <table class="bk-tbl">
+        <thead><tr>
+          <th>Leg</th><th>Cum. km</th><th>Length</th><th>Gain</th><th>Loss</th><th>m / km</th><th>Cut-off</th><th>Speed needed</th>
+        </tr></thead>
+        <tbody id="bk-ctbody"></tbody>
+      </table>
+    </div>
+    <p style="font-size:12.5px;color:var(--muted);margin:12px 0 14px;max-width:78ch">
+      Cumulative pace to the finish is 6.38 km/h. But the segment requirements matter more: ski the first 12 km at an
+      effort that feels too easy, make time between OO and Mosquito Brook where the course is mildest, and arrive at
+      Fish Hatchery with something left — the hardest 5 km starts there, and the flat lake crossing after it gives
+      nothing back.
+    </p>
+  </div>
+
+  <div class="bk-card bk-pub">
+    <div class="bk-shead">Publish</div>
+    <div class="bk-pubbody">
+      <p>Tick and adjust anything above, then copy this and paste it over <code>data.json</code> in your repo.
+         Commit, and it's live for everyone in about a minute. You don't need me for this — only for pulling
+         fresh activities out of Strava.</p>
+      <div class="bk-pubrow">
+        <button class="bk-btn" id="bk-copy">Copy data.json</button>
+        <button class="bk-btn ghost" id="bk-dl">Download file</button>
+        <span class="bk-ok" id="bk-ok">copied</span>
+      </div>
+      <textarea id="bk-json" readonly spellcheck="false" aria-label="data.json contents"></textarea>
+    </div>
+  </div>
+
+  <div class="bk-foot">
+    <div class="bk-legend">
+      <span style="color:var(--ink-2)">Waxed cold to warm, easy to hard:</span>
+      <span class="bk-lg"><i style="background:var(--green)"></i>Aerobic</span>
+      <span class="bk-lg"><i style="background:var(--gold)"></i>Vertical</span>
+      <span class="bk-lg"><i style="background:var(--blue)"></i>Strength &amp; snow</span>
+      <span class="bk-lg"><i style="background:var(--violet)"></i>Threshold</span>
+      <span class="bk-lg"><i style="background:var(--red)"></i>VO₂ max</span>
+    </div>
+    <button class="bk-reset" id="bk-reset">Clear everything logged</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var RACE=new Date(2027,1,27), W1=new Date(2026,6,27), KEY="birkie-log-site-v1";
+
+  /* aerobicH, longMin, strength, thr, vo2, speed, ski, label, phase, vertM */
+  var PLAN=[
+    [4.5,105,2,0,0,1,0,"Base","base",500],[4.5,105,2,0,0,1,0,"Base","base",500],
+    [5.0,120,2,0,0,1,0,"Base","base",550],[3.5,90,2,0,0,1,0,"Base · recovery","base",350],
+    [5.0,120,2,0,0,1,0,"Base","base",600],[5.5,120,2,0,0,1,0,"Base","base",650],
+    [5.5,135,2,0,0,1,0,"Base","base",650],
+    [4.0,90,2,0,0,1,0,"Build · recovery","build",450],[6.0,150,2,1,0,1,0,"Build","build",700],
+    [6.5,165,2,1,0,1,0,"Build","build",800],[6.5,180,2,1,0,1,0,"Build","build",800],
+    [5.0,120,2,0,0,1,0,"Build · recovery","build",550],[7.0,180,2,1,0,1,0,"Build","build",900],
+    [7.0,180,2,1,0,1,0,"Build","build",1000],[7.5,195,2,1,0,1,0,"Build","build",1000],
+    [5.5,135,2,0,0,1,0,"Build · recovery","build",650],[8.0,195,2,1,0,1,0,"Build","build",1200],
+    [8.0,210,2,1,0,1,0,"Build","build",1300],[5.5,135,2,0,0,1,0,"Build · recovery","build",700],
+    [8.0,180,2,1,1,1,2,"Snow","snow",1000],[8.0,180,2,1,1,1,2,"Snow","snow",1100],
+    [8.5,195,2,1,1,1,2,"Snow","snow",1200],[8.5,195,2,1,1,1,2,"Snow","snow",1200],
+    [6.0,150,2,0,0,1,2,"Snow · recovery","snow",800],[8.5,210,2,1,1,1,2,"Snow","snow",1300],
+    [9.0,210,2,1,1,1,2,"Snow","snow",1400],[9.0,225,2,1,1,1,2,"Snow · tune-up race","snow",1400],
+    [9.0,240,1,0,0,1,2,"Peak · 40K ski","peak",1500],[7.0,180,1,1,0,1,2,"Sharpen","peak",1000],
+    [5.0,90,1,0,1,1,1,"Taper","peak",500],[2.5,0,0,0,0,1,1,"Race week","peak",200]
+  ];
+
+  var PHASE={base:{c:"#2E7C55",n:"Base",a:1,b:7},build:{c:"#1D5C9E",n:"Build",a:8,b:19},
+             snow:{c:"#6B4B92",n:"Snow",a:20,b:27},peak:{c:"#C23A2E",n:"Peak & taper",a:28,b:31}};
+
+  /* name, length, max, min, gain, loss, cutoff */
+  var COURSE=[
+    ["Timber Trail",7.34,499.75,412.58,364.78,321.41,"11:10",7.00],
+    ["Fire Tower",4.59,533.89,461.83,247.47,203.03,"12:00",5.40],
+    ["Boedecker",4.63,509.02,434.86,197.51,228.17,"12:55",5.02],
+    ["OO",4.26,467.50,414.38,176.42,183.89,"13:40",6.00],
+    ["Gravel Pit",8.58,489.75,427.24,335.65,382.95,"15:00",6.68],
+    ["Mosquito Brook",6.24,444.15,396.27,271.06,282.46,"15:55",6.44],
+    ["Fish Hatchery",5.65,434.31,366.37,292.30,293.37,"16:45",6.84],
+    ["End of trail",5.23,420.04,350.15,293.37,295.66,"—",7.12]
+  ];
+
+  var SYNC={
+    stamp:"2026-07-29T22:00", through:"29 Jul 2026",
+    weeks:{ 1:{aer:38,vert:23,strength:2,ski:0,long:0,cont:0} },
+    acts:{ 1:[
+      {n:"Evening Rock Climb", d:"Wed 29 Jul", t:"1h 44m · effort 39",            k:"str"},
+      {n:"Afternoon Sail",     d:"Tue 28 Jul", t:"3h 58m · effort 33 · not counted", k:"skip"},
+      {n:"Morning Run",        d:"Tue 28 Jul", t:"38m · 5.1 km · 23 m · 157 bpm", k:"aer"},
+      {n:"Evening Rock Climb", d:"Mon 27 Jul", t:"1h 46m · effort 57",            k:"str"}
+    ]}
+  };
+
+  var HINT={
+    aer:"Anything conversational — run, spin, hilly walk, SkiErg, ski. 150–165 bpm.",
+    vert:"Metres climbed. The race is 2,179 m at 47 m/km, so flat hours don't prepare you for it.",
+    long:"Continuous, rolling, and back-load the climbing — the hardest section of the Birkie is the last one.",
+    ski:"Days on snow. The number that decides this race.",
+    str:"Climbing counts. Add the 20-minute supplement lifts to one of them.",
+    thr:"Hill repeats, 4–8 minute efforts. 177–186 bpm, short phrases only.",
+    vo2:"Short and sharp, 2–5 minutes. Snow or SkiErg.",
+    spd:"4–6 × 20s strides after an easy run. Five minutes, not a workout."
+  };
+
+  var log={}, cur=1, timer=null, mem=false;
+
+  /* Local tweaks live in this browser only. data.json is the shared source of truth. */
+  function save(){ clearTimeout(timer); timer=setTimeout(function(){
+    if(mem) return;
+    try{ localStorage.setItem(KEY,JSON.stringify(log)); }catch(e){ mem=true; }
+  },300); }
+  function load(){
+    try{ var v=localStorage.getItem(KEY); if(v) log=JSON.parse(v)||{}; }catch(e){ mem=true; }
+    return Promise.resolve();
+  }
+  /* data.json overrides the inline fallback when the site is hosted */
+  function fetchData(){
+    return fetch("data.json?t="+Date.now())
+      .then(function(r){ if(!r.ok) throw 0; return r.json(); })
+      .then(function(j){ if(j&&j.stamp) SYNC=j; })
+      .catch(function(){ /* keep inline fallback */ });
+  }
+  function ent(n){
+    if(!log[n]) log[n]={aer:0,vert:0,strength:0,thr:0,vo2:0,speed:0,ski:0,long:0,cont:0};
+    if(log[n].vert===undefined) log[n].vert=0;
+    return log[n];
+  }
+  function merge(){
+    if(log.__sync===SYNC.stamp) return;
+    for(var w in SYNC.weeks){
+      var s=SYNC.weeks[w], e=ent(+w);
+      ["aer","vert","strength","ski","thr","vo2","speed"].forEach(function(k){
+        if(s[k]!==undefined) e[k]=Math.max(e[k]||0,s[k]);
+      });
+      if(s.long) e.long=1; if(s.cont) e.cont=1;
+    }
+    log.__sync=SYNC.stamp; save();
+  }
+  function wkStart(n){ var d=new Date(W1); d.setDate(d.getDate()+(n-1)*7); return d; }
+  function range(n){
+    var M=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    var a=wkStart(n), b=new Date(a); b.setDate(b.getDate()+6);
+    return M[a.getMonth()]+" "+a.getDate()+" – "+M[b.getMonth()]+" "+b.getDate()+", "+b.getFullYear();
+  }
+  function nowWeek(){ return Math.max(1,Math.min(31,Math.floor((new Date()-W1)/86400000/7)+1)); }
+  function pct(n){
+    var p=PLAN[n-1], e=ent(n), s=0, t=0;
+    function add(v,w){ s+=Math.min(1,v)*w; t+=w; }
+    add(e.aer/(p[0]*60),32);
+    add(e.vert/p[9],14);
+    if(p[1]>0) add(e.long?1:0,12);
+    if(p[6]>0) add(e.ski/p[6],18);
+    if(p[2]>0) add(e.strength/p[2],10);
+    if(p[3]+p[4]>0) add((e.thr+e.vo2)/(p[3]+p[4]),10);
+    if(p[5]>0) add(e.speed/p[5],4);
+    return t? s/t : 0;
+  }
+  function hasLocalEdits(){
+    for(var i=1;i<=31;i++){
+      var e=log[i]; if(!e) continue;
+      var b=(SYNC.weeks&&SYNC.weeks[i])||{};
+      var ks=["aer","vert","strength","ski","thr","vo2","speed","long","cont"];
+      for(var j=0;j<ks.length;j++) if((e[ks[j]]||0)>(b[ks[j]]||0)) return true;
+    }
+    return false;
+  }
+  function hm(m){ return Math.floor(m/60)+"h "+(m%60<10?"0":"")+(m%60)+"m"; }
+
+  function phases(){
+    var s="",l="";
+    ["base","build","snow","peak"].forEach(function(k){
+      var p=PHASE[k], fl=(p.b-p.a+1)/31*100;
+      s+='<div class="bk-ph" style="flex:0 0 '+fl+'%;background:'+p.c+';opacity:.42"></div>';
+      l+='<span style="flex:0 0 '+fl+'%">'+p.n+'</span>';
+    });
+    document.getElementById("bk-phases").innerHTML=s;
+    document.getElementById("bk-phlab").innerHTML=l;
+  }
+
+  function chart(){
+    var svg=document.getElementById("bk-chart");
+    var W=960,H=168,PB=20,PT=10,n=31,bw=W/n,MAX=9.5;
+    var y=function(h){ return PT+(H-PB-PT)*(1-h/MAX); };
+    var s='<defs><linearGradient id="bkg" x1="0" y1="0" x2="0" y2="1">'+
+          '<stop offset="0%" stop-color="#2E7C55" stop-opacity=".16"/>'+
+          '<stop offset="100%" stop-color="#2E7C55" stop-opacity=".02"/></linearGradient></defs>';
+    var pts=[],i;
+    for(i=0;i<n;i++) pts.push([i*bw+bw/2,y(PLAN[i][0])]);
+    var d="M0,"+(H-PB)+" L"+pts[0][0].toFixed(1)+","+pts[0][1].toFixed(1);
+    for(i=1;i<n;i++) d+=" L"+pts[i][0].toFixed(1)+","+pts[i][1].toFixed(1);
+    d+=" L"+W+","+(H-PB)+" Z";
+    s+='<path d="'+d+'" fill="url(#bkg)"/>';
+    var ln="M"+pts[0][0].toFixed(1)+","+pts[0][1].toFixed(1);
+    for(i=1;i<n;i++) ln+=" L"+pts[i][0].toFixed(1)+","+pts[i][1].toFixed(1);
+    s+='<path d="'+ln+'" fill="none" stroke="#2E7C55" stroke-opacity=".45" stroke-width="1.5" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>';
+    for(i=0;i<n;i++){
+      var c=pct(i+1), top=y(PLAN[i][0]), base=H-PB, h=(base-top)*c;
+      if(h>0.6){
+        s+='<rect x="'+(i*bw+1.6)+'" y="'+(base-h)+'" width="'+(bw-3.2)+'" height="'+h+'" fill="#2E7C55" opacity="'+(c>=.999?.92:.62)+'"/>';
+        if(c>=.999) s+='<rect x="'+(i*bw+1.6)+'" y="'+(base-h-3.2)+'" width="'+(bw-3.2)+'" height="2.4" fill="#0B1620"/>';
+      }
+    }
+    s+='<line x1="0" y1="'+(H-PB)+'" x2="'+W+'" y2="'+(H-PB)+'" stroke="#CCD9E1" vector-effect="non-scaling-stroke"/>';
+    var sx=19*bw;
+    s+='<line x1="'+sx+'" y1="'+PT+'" x2="'+sx+'" y2="'+(H-PB)+'" stroke="#1D5C9E" stroke-dasharray="3 3" stroke-opacity=".55" vector-effect="non-scaling-stroke"/>';
+    s+='<text x="'+(sx+6)+'" y="'+(PT+11)+'" font-family="IBM Plex Mono,monospace" font-size="9" fill="#1D5C9E" letter-spacing="1.4">FIRST SNOW</text>';
+    var cx=(cur-1)*bw;
+    s+='<rect x="'+cx+'" y="'+PT+'" width="'+bw+'" height="'+(H-PB-PT)+'" fill="#C23A2E" opacity=".08"/>';
+    s+='<line x1="'+(cx+bw/2)+'" y1="'+PT+'" x2="'+(cx+bw/2)+'" y2="'+(H-PB)+'" stroke="#C23A2E" stroke-width="1.5" vector-effect="non-scaling-stroke"/>';
+    [[0,"AUG"],[5,"SEP"],[9,"OCT"],[14,"NOV"],[18,"DEC"],[23,"JAN"],[27,"FEB"]].forEach(function(m){
+      s+='<text x="'+(m[0]*bw+3)+'" y="'+(H-6)+'" font-family="IBM Plex Mono,monospace" font-size="9" fill="#7A8B96" letter-spacing="1.6">'+m[1]+'</text>';
+    });
+    for(i=0;i<n;i++)
+      s+='<rect class="bk-hit" tabindex="0" role="button" aria-label="Week '+(i+1)+'" data-w="'+(i+1)+'" x="'+(i*bw)+'" y="0" width="'+bw+'" height="'+H+'" fill="transparent"/>';
+    svg.innerHTML=s;
+
+    var tip=document.getElementById("bk-tip");
+    Array.prototype.forEach.call(svg.querySelectorAll(".bk-hit"),function(r){
+      var w=+r.getAttribute("data-w");
+      function pick(){ cur=w; render(); }
+      r.addEventListener("click",pick);
+      r.addEventListener("keydown",function(ev){ if(ev.key==="Enter"||ev.key===" "){ ev.preventDefault(); pick(); } });
+      r.addEventListener("mouseenter",function(){
+        var p=PLAN[w-1];
+        tip.innerHTML='<b>Week '+w+'</b> <i>· '+p[7]+'</i><br>'+p[0].toFixed(1)+' h · '+p[9]+' m climb · '+Math.round(pct(w)*100)+'% banked';
+        tip.style.left=((w-0.5)/31*100)+"%"; tip.style.top="-6px"; tip.style.opacity="1";
+      });
+      r.addEventListener("mouseleave",function(){ tip.style.opacity="0"; });
+    });
+  }
+
+  /* ---------- course profile ---------- */
+  function courseChart(){
+    var svg=document.getElementById("bk-course");
+    var W=960,H=230,PB=34,PT=26,PL=0;
+    var TOT=50.0, EMIN=335, EMAX=550;
+    var x=function(km){ return PL+(W-PL)*(km/TOT); };
+    var y=function(m){ return PT+(H-PB-PT)*(1-(m-EMIN)/(EMAX-EMIN)); };
+    var s="",cum=0,i;
+
+    // gridlines
+    [350,400,450,500,550].forEach(function(m){
+      s+='<line x1="0" y1="'+y(m)+'" x2="'+W+'" y2="'+y(m)+'" stroke="#E5EDF2" vector-effect="non-scaling-stroke"/>';
+      s+='<text x="3" y="'+(y(m)-3)+'" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="#8FA3B0">'+m+' m</text>';
+    });
+
+    for(i=0;i<COURSE.length;i++){
+      var c=COURSE[i], a=cum, b=cum+c[1];
+      var dens=c[4]/c[1];
+      var op=0.20+ (dens-39)/(56-39)*0.55;         // denser climbing = darker
+      s+='<rect x="'+x(a)+'" y="'+y(c[2])+'" width="'+(x(b)-x(a))+'" height="'+(y(c[3])-y(c[2]))+'" '+
+         'fill="#2E7C55" opacity="'+op.toFixed(2)+'"/>';
+      s+='<line x1="'+x(a)+'" y1="'+y(c[2])+'" x2="'+x(b)+'" y2="'+y(c[2])+'" stroke="#2E7C55" stroke-width="1.5" vector-effect="non-scaling-stroke"/>';
+      s+='<line x1="'+x(b)+'" y1="'+PT+'" x2="'+x(b)+'" y2="'+(H-PB)+'" stroke="#CCD9E1" stroke-dasharray="2 3" vector-effect="non-scaling-stroke"/>';
+      // density label
+      s+='<text x="'+((x(a)+x(b))/2)+'" y="'+(y(c[2])-7)+'" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" '+
+         'fill="'+(dens>=50?"#C23A2E":"#41525E")+'">'+dens.toFixed(0)+'</text>';
+      cum=b;
+    }
+    // lake crossing
+    s+='<rect x="'+x(cum)+'" y="'+y(352)+'" width="'+(x(TOT)-x(cum))+'" height="'+(y(348)-y(352))+'" fill="#1D5C9E" opacity=".28"/>';
+    s+='<text x="'+((x(cum)+x(TOT))/2)+'" y="'+(y(352)-7)+'" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="#1D5C9E">LAKE</text>';
+
+    s+='<line x1="0" y1="'+(H-PB)+'" x2="'+W+'" y2="'+(H-PB)+'" stroke="#CCD9E1" vector-effect="non-scaling-stroke"/>';
+    s+='<text x="2" y="'+(PT-13)+'" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="#8FA3B0" letter-spacing="1.2">METRES CLIMBED PER KM, BY SECTION</text>';
+
+    // station labels
+    cum=0;
+    for(i=0;i<COURSE.length;i++){
+      cum+=COURSE[i][1];
+      var lbl=COURSE[i][0]==="End of trail"?"Trail end":COURSE[i][0];
+      s+='<text x="'+(x(cum)-3)+'" y="'+(H-PB+13)+'" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="#41525E">'+lbl+'</text>';
+      s+='<text x="'+(x(cum)-3)+'" y="'+(H-PB+24)+'" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8FA3B0">'+cum.toFixed(1)+'k</text>';
+    }
+    svg.innerHTML=s;
+
+    // table
+    var tb="",tot=0,cm=0;
+    for(i=0;i<COURSE.length;i++){
+      var c=COURSE[i]; cm+=c[1]; tot+=c[4];
+      var dens=c[4]/c[1];
+      tb+='<tr><td>'+(i+1)+'. '+c[0]+'</td><td>'+cm.toFixed(2)+'</td><td>'+c[1].toFixed(2)+'</td>'+
+          '<td>'+Math.round(c[4])+' m</td><td>'+Math.round(c[5])+' m</td>'+
+          '<td class="'+(dens>=50?"bk-hot":(dens<42?"bk-cool":""))+'">'+dens.toFixed(1)+'</td>'+
+          '<td>'+c[6]+'</td><td class="'+(c[7]>=7?"bk-hot":"")+'">'+c[7].toFixed(2)+'</td></tr>';
+    }
+    tb+='<tr><td>Lake + Main St</td><td>50.00</td><td>3.48</td><td>0 m</td><td>0 m</td><td>0</td><td>18:00</td><td>—</td></tr>';
+    tb+='<tr><td>Total</td><td>50.00</td><td>50.00</td><td>'+Math.round(tot)+' m</td><td>2,191 m</td><td>47</td><td></td><td>6.38</td></tr>';
+    document.getElementById("bk-ctbody").innerHTML=tb;
+  }
+
+  function pips(count,target,color,set){
+    var d=document.createElement("div"); d.className="bk-pips";
+    for(var i=1;i<=target;i++)(function(i){
+      var b=document.createElement("button"); b.className="bk-pip";
+      b.setAttribute("data-on",i<=count?"1":"0");
+      b.setAttribute("aria-pressed",i<=count?"true":"false");
+      b.setAttribute("aria-label","Session "+i+" of "+target);
+      if(i<=count) b.style.background=color;
+      b.onclick=function(){ set(i<=count?i-1:i); };
+      d.appendChild(b);
+    })(i);
+    return d;
+  }
+  function steps(vals,label,fn){
+    var d=document.createElement("div"); d.className="bk-ctl";
+    d.innerHTML=vals.map(function(v){
+      return '<button class="bk-step" data-a="'+v[0]+'" aria-label="'+v[1]+' '+label+'">'+v[1]+'</button>';
+    }).join("");
+    return d;
+  }
+  function row(o){
+    var r=document.createElement("div"); r.className="bk-row";
+    var top=document.createElement("div"); top.className="bk-rtop";
+    var nm=document.createElement("div"); nm.className="bk-rname";
+    nm.innerHTML='<span class="bk-dot" style="background:'+o.color+'"></span><span class="bk-n">'+o.name+'</span><span class="bk-of">'+o.of+'</span>';
+    top.appendChild(nm); top.appendChild(o.ctl); r.appendChild(top);
+    var h=document.createElement("div"); h.className="bk-hint"; h.textContent=o.hint; r.appendChild(h);
+    if(o.bar!=null){
+      var b=document.createElement("div"); b.className="bk-bar";
+      var f=document.createElement("div"); f.className="bk-fill";
+      f.style.background=o.color; f.style.width=Math.min(100,o.bar*100)+"%";
+      b.appendChild(f); r.appendChild(b);
+    }
+    return r;
+  }
+
+  function render(){
+    var p=PLAN[cur-1], e=ent(cur), ph=PHASE[p[8]];
+    document.getElementById("bk-wknum").textContent="Week "+cur;
+    document.getElementById("bk-wkdates").textContent=range(cur);
+    var bd=document.getElementById("bk-badge"); bd.textContent=p[7]; bd.style.background=ph.c;
+    document.getElementById("bk-prev").disabled=cur<=1;
+    document.getElementById("bk-next").disabled=cur>=31;
+
+    var box=document.getElementById("bk-rows"); box.innerHTML="";
+
+    var c1=document.createElement("div"); c1.className="bk-ctl";
+    c1.innerHTML='<button class="bk-step" data-a="-15">–15</button><span class="bk-val">'+hm(e.aer)+
+                 '</span><button class="bk-step" data-a="15">+15</button><button class="bk-step" data-a="45">+45</button>';
+    Array.prototype.forEach.call(c1.querySelectorAll("button"),function(b){
+      b.onclick=function(){ e.aer=Math.max(0,e.aer+(+b.getAttribute("data-a"))); save(); render(); };
+    });
+    box.appendChild(row({name:"Aerobic",color:"#2E7C55",hint:HINT.aer,
+      of:(e.aer/60).toFixed(1)+" of "+p[0].toFixed(1)+" h",bar:e.aer/(p[0]*60),ctl:c1}));
+
+    var c2=document.createElement("div"); c2.className="bk-ctl";
+    c2.innerHTML='<button class="bk-step" data-a="-100">–100</button><span class="bk-val">'+e.vert+' m'+
+                 '</span><button class="bk-step" data-a="100">+100</button><button class="bk-step" data-a="250">+250</button>';
+    Array.prototype.forEach.call(c2.querySelectorAll("button"),function(b){
+      b.onclick=function(){ e.vert=Math.max(0,e.vert+(+b.getAttribute("data-a"))); save(); render(); };
+    });
+    box.appendChild(row({name:"Vertical",color:"#BF8511",hint:HINT.vert,
+      of:e.vert+" of "+p[9]+" m",bar:e.vert/p[9],ctl:c2}));
+
+    if(p[1]>0){
+      var lg=document.createElement("div"); lg.className="bk-ctl";
+      var b1=document.createElement("button"); b1.className="bk-chk";
+      b1.setAttribute("data-on",e.long?"1":"0"); if(e.long) b1.style.color="#2E7C55";
+      b1.textContent=e.long?"✓ Done":"Mark done";
+      b1.onclick=function(){ e.long=e.long?0:1; if(!e.long) e.cont=0; save(); render(); };
+      var b2=document.createElement("button"); b2.className="bk-chk";
+      b2.setAttribute("data-on",e.cont?"1":"0"); if(e.cont) b2.style.color="#6B4B92";
+      b2.textContent=e.cont?"✓ Continuous":"Continuous?";
+      b2.disabled=!e.long; b2.style.opacity=e.long?1:.38;
+      b2.onclick=function(){ if(e.long){ e.cont=e.cont?0:1; save(); render(); } };
+      lg.appendChild(b1); lg.appendChild(b2);
+      box.appendChild(row({name:"Long session",color:"#2E7C55",hint:HINT.long,of:"target "+hm(p[1]),bar:null,ctl:lg}));
+    }
+    if(p[6]>0) box.appendChild(row({name:"Days on snow",color:"#1D5C9E",hint:HINT.ski,
+      of:e.ski+" of "+p[6],bar:null,ctl:pips(e.ski,p[6],"#1D5C9E",function(v){ e.ski=v; save(); render(); })}));
+    if(p[2]>0) box.appendChild(row({name:"Strength",color:"#1D5C9E",hint:HINT.str,
+      of:e.strength+" of "+p[2],bar:null,ctl:pips(e.strength,p[2],"#1D5C9E",function(v){ e.strength=v; save(); render(); })}));
+    if(p[3]>0) box.appendChild(row({name:"Threshold",color:"#6B4B92",hint:HINT.thr,
+      of:e.thr+" of "+p[3],bar:null,ctl:pips(e.thr,p[3],"#6B4B92",function(v){ e.thr=v; save(); render(); })}));
+    if(p[4]>0) box.appendChild(row({name:"VO₂ max",color:"#C23A2E",hint:HINT.vo2,
+      of:e.vo2+" of "+p[4],bar:null,ctl:pips(e.vo2,p[4],"#C23A2E",function(v){ e.vo2=v; save(); render(); })}));
+    if(p[5]>0) box.appendChild(row({name:"Speed",color:"#BF8511",hint:HINT.spd,
+      of:e.speed+" of "+p[5],bar:null,ctl:pips(e.speed,p[5],"#BF8511",function(v){ e.speed=v; save(); render(); })}));
+
+    feed(); chart(); stats(); refreshExport();
+  }
+
+  function feed(){
+    var el=document.getElementById("bk-feed"), a=SYNC.acts[cur];
+    var C={aer:"#2E7C55",str:"#1D5C9E",ski:"#6B4B92",skip:"#CCD9E1"};
+    if(!a||!a.length){ el.innerHTML='<div class="bk-empty">Nothing synced for this week yet. Anything you log by hand stays put.</div>'; return; }
+    el.innerHTML=a.map(function(x){
+      return '<div class="bk-act"><i style="background:'+(C[x.k]||"#7A8B96")+'"></i><div><b>'+x.n+'</b><span>'+x.d+' · '+x.t+'</span></div></div>';
+    }).join("");
+  }
+
+  function stats(){
+    document.getElementById("bk-days").textContent=Math.max(0,Math.ceil((RACE-new Date())/86400000));
+    var c=pct(cur);
+    document.getElementById("bk-ringpct").textContent=Math.round(c*100)+"%";
+    document.getElementById("bk-ringarc").setAttribute("stroke-dashoffset",(257.6*(1-c)).toFixed(1));
+
+    var aer=0,vert=0,ski=0,hit=0,cd=0,ct=0,done=0,plan=0,skiT=0,vertT=0,i;
+    for(i=1;i<=31;i++){
+      plan+=PLAN[i-1][0]; skiT+=PLAN[i-1][6]; vertT+=PLAN[i-1][9];
+      var e=log[i]; if(!e) continue;
+      aer+=e.aer; vert+=(e.vert||0); ski+=e.ski; done+=pct(i)*PLAN[i-1][0];
+      if(pct(i)>=.999) hit++;
+      if(e.long){ ct++; if(e.cont) cd++; }
+    }
+    document.getElementById("bk-banked").textContent=Math.round(done/plan*100)+"%";
+    document.getElementById("bk-stats").innerHTML=
+      '<div class="bk-stat"><b>'+(aer/60).toFixed(0)+'</b><span>aerobic hours</span><em>of '+Math.round(plan)+' planned</em></div>'+
+      '<div class="bk-stat"><b>'+(vert>=1000?(vert/1000).toFixed(1)+'k':vert)+'</b><span>metres climbed</span><em>of '+(vertT/1000).toFixed(0)+'k planned</em></div>'+
+      '<div class="bk-stat"><b>'+ski+'</b><span>days on snow</span><em>target '+skiT+'</em></div>'+
+      '<div class="bk-stat"><b>'+hit+'</b><span>weeks fully hit</span><em>of 31</em></div>'+
+      '<div class="bk-stat"><b>'+(ct?Math.round(cd/ct*100):0)+'%</b><span>long sessions continuous</span><em>'+cd+' of '+ct+'</em></div>'+
+      '<div class="bk-stat"><b>'+(vert?Math.round(vert/(aer/60||1)):0)+'</b><span>m climbed per hour</span><em>race is 435</em></div>';
+    var note='<b>✓ Synced from Strava</b> through '+SYNC.through+'.<br>'+
+      'Runs, rides, hikes and walks fill aerobic time and vertical. Climbs fill strength.<br>'+
+      'This is the public view — everyone sees what is in data.json.';
+    if(hasLocalEdits()) note+='<br><span style="color:#BF8511">● You have local ticks that visitors cannot see. '+
+      'Ask for a sync to publish them.</span>';
+    document.getElementById("bk-syncnote").innerHTML=note;
+  }
+
+  function today(){
+    var M=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"], d=new Date();
+    return d.getDate()+" "+M[d.getMonth()]+" "+d.getFullYear();
+  }
+  function exportJSON(){
+    var out={stamp:new Date().toISOString().slice(0,16),through:today(),weeks:{},acts:(SYNC&&SYNC.acts)||{}};
+    var ks=["aer","vert","strength","thr","vo2","speed","ski","long","cont"];
+    for(var i=1;i<=31;i++){
+      var e=log[i]; if(!e) continue;
+      var o={},any=false;
+      for(var j=0;j<ks.length;j++){ if(e[ks[j]]){ o[ks[j]]=e[ks[j]]; any=true; } }
+      if(any) out.weeks[i]=o;
+    }
+    return JSON.stringify(out,null,2);
+  }
+  function refreshExport(){
+    var t=document.getElementById("bk-json"); if(t) t.value=exportJSON();
+  }
+  document.getElementById("bk-copy").onclick=function(){
+    var t=document.getElementById("bk-json"), ok=document.getElementById("bk-ok");
+    t.select(); t.setSelectionRange(0,999999);
+    var done=function(){ ok.classList.add("on"); setTimeout(function(){ ok.classList.remove("on"); },1600); };
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(t.value).then(done).catch(function(){ try{document.execCommand("copy");done();}catch(e){} });
+    } else { try{ document.execCommand("copy"); done(); }catch(e){} }
+  };
+  document.getElementById("bk-dl").onclick=function(){
+    var b=new Blob([exportJSON()],{type:"application/json"}), u=URL.createObjectURL(b);
+    var a=document.createElement("a"); a.href=u; a.download="data.json"; a.click();
+    setTimeout(function(){ URL.revokeObjectURL(u); },1000);
+  };
+  document.getElementById("bk-prev").onclick=function(){ if(cur>1){ cur--; render(); } };
+  document.getElementById("bk-next").onclick=function(){ if(cur<31){ cur++; render(); } };
+  document.getElementById("bk-todaybtn").onclick=function(){ cur=nowWeek(); render(); };
+  document.getElementById("bk-reset").onclick=function(){ log={}; merge(); save(); render(); };
+
+  phases(); courseChart();
+  fetchData().then(load).then(function(){ merge(); cur=nowWeek(); render(); });
+})();
+</script>
+
+</body>
+</html>
