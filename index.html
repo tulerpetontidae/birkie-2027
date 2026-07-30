@@ -222,7 +222,7 @@
       <h1 class="bk-title">American<br>Birkebeiner</h1>
       <div class="bk-facts">
         <div class="bk-fact">Event<b>50K skate</b></div>
-        <div class="bk-fact">Climbing<b>2,179 m · 47 m/km</b></div>
+        <div class="bk-fact">Climbing<b>~865 m · 17 m/km</b></div>
         <div class="bk-fact">Wave<b>10 · 10:10 start</b></div>
         <div class="bk-fact">Target<b>4:30 – 5:15</b></div>
       </div>
@@ -330,25 +330,29 @@
     <div class="bk-cap">
       <div>
         <h2>Cable to Hayward, 50 km</h2>
-        <p>Start elevation ~410 m at the OO/Telemark start near Cable, climbing to a high point of ~530 m at the
-           Fire Tower (km 12), down to ~359 m crossing Lake Hayward, finishing at ~366 m on Main Street. Eight
-           official trail-cabin sections, sourced from the Birkie's own trail markers.</p>
+        <p>Real GPS trace, not an estimate: start at ~414 m near Cable, climbing to a high point of 528 m at the
+           Fire Tower (km 11.2), down to a 362 m low crossing toward Lake Hayward. Eight official trail-cabin
+           sections, matched against the actual ski-trail geometry.</p>
       </div>
     </div>
 
     <div class="bk-chartwrap">
-      <svg class="bk-svg" id="bk-course" viewBox="0 0 960 230" preserveAspectRatio="none" role="img" aria-label="Birkie skate course elevation by section"></svg>
+      <svg class="bk-svg" id="bk-course" viewBox="0 0 960 230" preserveAspectRatio="none" role="img" aria-label="Birkie skate course elevation, measured from GPS and terrain data"></svg>
     </div>
     <p style="font-size:11.5px;color:var(--muted);margin:8px 0 0">
-      The band is the true elevation range within each section — the line is illustrative of how it moves inside
-      that range, not a GPS trace. Named landmarks are marked where they fall.
+      This is the real profile: the American Birkebeiner Trail's mapped geometry (OpenStreetMap, ODbL), sampled
+      every 100 m against the USGS 3DEP 1-metre bare-earth elevation model — LIDAR, not radar, so tree canopy
+      doesn't inflate it. Covers the mapped trail from the start through Hatchery Creek to the lake's edge (49.15
+      of 50.00 km, dashed beyond that) — the final lake crossing and Main Street finish aren't part of the
+      permanent trail dataset, but the mapped trail is already flat where it reaches the lakeshore, so the missing
+      stretch is not hiding any climbing.
     </p>
 
     <div class="bk-keys">
-      <div class="bk-key"><b>2,179 m</b><span>climbed in one morning — more than a three-day mountain trip</span></div>
-      <div class="bk-key"><b>530 m</b><span>high point, at the Fire Tower, km 12 — the course's only real summit</span></div>
-      <div class="bk-key"><b>39–56</b><span>metres per km, every single section. There is no easy half</span></div>
-      <div class="bk-key"><b>Section 8</b><span>steepest <em style="font-style:normal">and</em> fastest-required leg of the race — and it comes at 41 km</span></div>
+      <div class="bk-key"><b id="bk-realgain">— m</b><span>measured climbing over the mapped 49.15 km — well short of round-number race-day claims, but this is GPS and LIDAR, not a press release</span></div>
+      <div class="bk-key"><b>528 m</b><span>high point, at the Fire Tower, km 11.2 — the course's only real summit</span></div>
+      <div class="bk-key"><b>Fire Tower</b><span>steepest leg by real climbing-per-km — and it lands early, while legs are still fresh</span></div>
+      <div class="bk-key"><b>7.12 km/h</b><span>needed on Section 8 (End of trail) — the tightest cut-off margin of the day, regardless of terrain</span></div>
     </div>
 
     <div class="bk-tblwrap">
@@ -360,10 +364,14 @@
       </table>
     </div>
     <p style="font-size:12.5px;color:var(--muted);margin:12px 0 14px;max-width:78ch">
-      Cumulative pace to the finish is 6.38 km/h. But the segment requirements matter more: ski the first 12 km at an
-      effort that feels too easy, make time between OO and Mosquito Brook where the course is mildest, and arrive at
-      Fish Hatchery with something left — the hardest 5 km starts there, and the flat lake crossing after it gives
-      nothing back.
+      Cumulative pace to the finish is 6.38 km/h. Real terrain says the sting is at the start, not the end: Fire
+      Tower (km 7–12) is the steepest sustained climbing-per-km on the entire course, while it's still early. The
+      back half — Fish Hatchery and End of trail — climbs more gently per kilometre, but it arrives on tired legs
+      and carries the two punchy bumps racers actually talk about, Bitch Hill and Son of Bitch Hill.
+    </p>
+    <p style="font-size:11px;color:var(--muted);margin:-6px 0 14px;max-width:78ch">
+      * Real data covers this leg only partway (to km 49.15) — the mapped stretch is measured flat, and the final
+      ~0.85 km of lake ice and Main Street pavement isn't in the trail dataset at all.
     </p>
   </div>
 
@@ -371,7 +379,7 @@
     <div class="bk-cap">
       <div>
         <h2>Station by station</h2>
-        <p>Start to finish, in order. Red markers are the steepest legs (≥50 m climbed per km), green the mildest.</p>
+        <p>Start to finish, in order. Red markers are the steepest legs by real climbing-per-km (≥22 m/km), green the mildest (&lt;15 m/km).</p>
       </div>
     </div>
 
@@ -382,9 +390,13 @@
     <div class="bk-segs" id="bk-segs"></div>
 
     <p class="bk-source">Segment boundaries follow the Birkie's official trail-cabin markers (Timber Trail, Fire
-      Tower, Boedecker, OO, Gravel Pit, Mosquito Brook, Fish Hatchery). Terrain notes compiled from the Birkie trail
-      guide and race-strategy write-ups from athletes who've raced it — treat the named hills as course lore, not
-      surveyed fact, and expect snow conditions to change how any of this actually skis.</p>
+      Tower, Boedecker, OO, Gravel Pit, Mosquito Brook, Fish Hatchery), cross-checked against the "American
+      Birkebeiner Trail" route relation in OpenStreetMap (ODbL) — its own named way-segments land within a few
+      hundred metres of the same markers. Elevation is measured, not estimated: that OSM geometry sampled every
+      100 m against the USGS 3DEP 1-metre LIDAR elevation model. Hill names and terrain notes are compiled from
+      the Birkie trail guide and race-strategy write-ups from athletes who've raced it — treat the named hills as
+      course lore, the elevation numbers as real, and expect snow conditions to change how any of this actually
+      skis.</p>
   </div>
 
   </div><!-- /bk-tab-course -->
@@ -419,27 +431,34 @@
   var PHASE={base:{c:"#2E7C55",n:"Base",a:1,b:7},build:{c:"#1D5C9E",n:"Build",a:8,b:19},
              snow:{c:"#6B4B92",n:"Snow",a:20,b:27},peak:{c:"#C23A2E",n:"Peak & taper",a:28,b:31}};
 
-  /* name, length, max, min, gain, loss, cutoff */
+  /* name, length, max, min, gain, loss, cutoff, speed — max/min/gain/loss are REAL,
+     measured from the OSM "American Birkebeiner Trail" relation (13757944, ODbL) sampled
+     every 100 m against the USGS 3DEP 1 m bare-earth elevation model */
   var COURSE=[
-    ["Timber Trail",7.34,499.75,412.58,364.78,321.41,"11:10",7.00],
-    ["Fire Tower",4.59,533.89,461.83,247.47,203.03,"12:00",5.40],
-    ["Boedecker",4.63,509.02,434.86,197.51,228.17,"12:55",5.02],
-    ["OO",4.26,467.50,414.38,176.42,183.89,"13:40",6.00],
-    ["Gravel Pit",8.58,489.75,427.24,335.65,382.95,"15:00",6.68],
-    ["Mosquito Brook",6.24,444.15,396.27,271.06,282.46,"15:55",6.44],
-    ["Fish Hatchery",5.65,434.31,366.37,292.30,293.37,"16:45",6.84],
-    ["End of trail",5.23,420.04,350.15,293.37,295.66,"—",7.12]
+    ["Timber Trail",7.34,500.5,414.3,166,115,"11:10",7.00],
+    ["Fire Tower",4.59,528.5,462.0,127,89,"12:00",5.40],
+    ["Boedecker",4.63,502.3,434.2,106,139,"12:55",5.02],
+    ["OO",4.26,469.0,423.5,72,84,"13:40",6.00],
+    ["Gravel Pit",8.58,469.1,412.4,103,146,"15:00",6.68],
+    ["Mosquito Brook",6.24,425.9,389.7,91,115,"15:55",6.44],
+    ["Fish Hatchery",5.65,427.2,374.8,98,113,"16:45",6.84],
+    ["End of trail",5.23,420.9,361.8,94,107,"—",7.12]
   ];
+
+  /* real elevation profile, 493 points at 100 m spacing from km 0 to km 49.15,
+     source as above — this is measured terrain, not an illustration */
+  var ELEV=[414,418,422,420,421,416,418,423,425,425,428,428,434,439,443,445,448,451,452,446,444,452,449,443,455,455,450,449,446,447,450,453,458,452,457,456,454,458,467,470,472,470,472,470,478,481,480,475,477,480,485,484,482,488,495,500,498,487,479,482,478,480,473,476,486,482,482,480,482,482,476,470,461,464,462,464,470,470,468,473,480,478,479,472,477,482,486,483,476,466,467,475,481,479,479,477,478,489,485,486,493,494,494,505,500,504,517,525,528,526,516,519,528,522,515,509,510,501,506,502,491,488,487,480,488,480,482,478,476,476,485,483,477,475,464,458,450,441,444,442,434,439,450,452,454,441,445,449,456,453,454,446,448,448,443,436,449,456,470,472,474,478,479,476,472,473,469,468,465,459,462,458,460,458,456,459,458,461,459,459,460,462,455,453,448,442,433,428,436,434,442,445,440,442,438,437,426,425,424,427,432,443,452,457,457,460,459,459,457,464,460,458,458,459,461,461,465,469,465,463,467,466,453,452,451,453,454,455,460,462,461,463,461,459,454,444,446,441,442,445,442,445,440,439,444,439,436,435,437,437,440,433,431,425,427,428,428,429,422,422,422,420,418,423,415,413,417,419,426,429,437,438,439,435,434,432,428,424,421,422,421,426,427,426,425,425,425,421,415,417,420,416,417,412,414,413,410,415,420,426,426,419,417,415,419,412,414,412,414,406,411,411,410,409,412,416,416,414,408,406,406,409,417,420,425,417,413,409,408,414,412,410,409,408,414,418,417,416,417,410,408,407,411,413,409,407,402,406,405,408,412,409,402,394,391,392,390,387,386,382,380,380,380,381,383,389,396,402,410,412,415,414,415,416,409,407,405,405,402,409,403,408,407,423,421,422,425,427,426,423,413,408,399,396,399,400,399,397,390,385,384,383,385,386,390,400,397,389,384,383,387,377,375,375,375,373,376,377,377,382,392,397,402,408,416,417,421,420,416,412,410,400,396,390,388,394,384,383,385,391,396,399,404,412,412,409,407,408,404,396,390,384,379,386,378,371,369,368,367,366,363,363,363,364,363,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,364,364,365,365,366,367,369];
+  var ELEV_STEP=0.1, ELEV_N=ELEV.length, ELEV_MAXKM=(ELEV_N-1)*ELEV_STEP;
 
   /* name, teaser, text */
   var SEGDESC=[
     ["Timber Trail","Out of the start","Out onto the Powerline Hills while the field is still bunched — expect traffic and blocked lines. A short, sharp pull known among racers as The Wall arrives before the trail cabin that closes this leg."],
-    ["Fire Tower","The high point","Snowmobile Hill's fast, technical descent gives way to a long, sustained climb to the course's high point — about 530 m, at the site of the old fire tower. The steepest sustained pull of the day so far."],
+    ["Fire Tower","The high point","Snowmobile Hill's fast, technical descent gives way to a long, sustained climb to the course's real high point — 528 m, at the site of the old fire tower. Measured against real terrain data, this is the steepest sustained climbing-per-km on the whole course — and it comes early."],
     ["Boedecker","The Birkie Drop","A fast ~5% descent off Fire Tower — the Birkie Drop — scatters the field before Boedecker Hill pulls it back together on the climb out."],
     ["OO","Flattest mile on course","The most drafting-friendly stretch on the course, climbing gently to the Hwy OO bridge, where the trail merges with the Kortelopet field and the crowd noise picks up."],
     ["Gravel Pit","Longest leg","Long, easy downhill running out of OO, then a grinding climb of several kilometres back up to Gravel Pit. The longest section on the course — pace it, don't race it."],
     ["Mosquito Brook","Rolling, momentum-fed","Small rolling hills that reward momentum over raw power. Snow here can go heavy late in the day as the trail softens underfoot."],
-    ["Fish Hatchery","The hardest 5 km","The 39K Hill grinds up narrow and steep, then Bitch Hill hits at km 40 — a short, brutal pitch in front of a costumed, screaming crowd. Widely reckoned the hardest stretch of the race."],
+    ["Fish Hatchery","The hardest 5 km","The 39K Hill grinds up narrow and steep, then Bitch Hill — the real terrain's sharpest late-race bump, around km 38.7 — hits in front of a costumed, screaming crowd. Gentler per km than Fire Tower on paper, but this is kilometre 38, not kilometre 8."],
     ["End of trail","One more set","Son of Bitch Hill answers immediately, then Sunset Hill and Josie's Hill — the last real climbing of the day — before the trail tips down toward the lake."],
     ["Lake + Main St","Flat, then a sprint","Four kilometres flat across Lake Hayward's ice, often straight into a headwind with nothing to hide behind. The International Bridge's short, steep pitch is the last climb of the day, then it's a hard-packed sprint down Main Street to the line."]
   ];
@@ -457,7 +476,7 @@
 
   var HINT={
     aer:"Anything conversational — run, spin, hilly walk, SkiErg, ski. 150–165 bpm.",
-    vert:"Metres climbed. The race is 2,179 m at 47 m/km, so flat hours don't prepare you for it.",
+    vert:"Metres climbed. The race is ~865 m of real, measured climbing at 17 m/km average, so flat hours don't prepare you for it.",
     long:"Continuous, rolling, and back-load the climbing — the hardest section of the Birkie is the last one.",
     ski:"Days on snow. The number that decides this race.",
     str:"Climbing counts. Add the 20-minute supplement lifts to one of them.",
@@ -593,49 +612,59 @@
     });
   }
 
-  /* ---------- course profile ---------- */
+  /* ---------- course profile (real GPS + LIDAR elevation) ---------- */
+  var TAIL_GAIN=7, TAIL_LOSS=0;   // measured 46.52 -> 49.15 km; 49.15 -> 50.00 unmapped, known flat
+  function elevAt(km){
+    var f=Math.min(km,ELEV_MAXKM)/ELEV_STEP, i=Math.floor(f), t=f-i;
+    if(i>=ELEV_N-1) return ELEV[ELEV_N-1];
+    return ELEV[i]+(ELEV[i+1]-ELEV[i])*t;
+  }
   function courseChart(){
     var svg=document.getElementById("bk-course");
     var W=960,H=230,PB=34,PT=26,PL=0;
-    var TOT=50.0, EMIN=335, EMAX=550;
+    var TOT=50.0, EMIN=345, EMAX=545;
     var x=function(km){ return PL+(W-PL)*(km/TOT); };
     var y=function(m){ return PT+(H-PB-PT)*(1-(m-EMIN)/(EMAX-EMIN)); };
     var s="",cum=0,i;
 
     // gridlines
-    [350,400,450,500,550].forEach(function(m){
+    [350,400,450,500].forEach(function(m){
       s+='<line x1="0" y1="'+y(m)+'" x2="'+W+'" y2="'+y(m)+'" stroke="#E5EDF2" vector-effect="non-scaling-stroke"/>';
       s+='<text x="3" y="'+(y(m)-3)+'" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="#8FA3B0">'+m+' m</text>';
     });
 
+    // section boundary dividers
     for(i=0;i<COURSE.length;i++){
-      var c=COURSE[i], a=cum, b=cum+c[1];
-      var dens=c[4]/c[1];
-      var op=0.20+ (dens-39)/(56-39)*0.55;         // denser climbing = darker
-      s+='<rect x="'+x(a)+'" y="'+y(c[2])+'" width="'+(x(b)-x(a))+'" height="'+(y(c[3])-y(c[2]))+'" '+
-         'fill="#2E7C55" opacity="'+op.toFixed(2)+'"/>';
-      s+='<line x1="'+x(a)+'" y1="'+y(c[2])+'" x2="'+x(b)+'" y2="'+y(c[2])+'" stroke="#2E7C55" stroke-width="1.5" vector-effect="non-scaling-stroke"/>';
-      s+='<line x1="'+x(b)+'" y1="'+PT+'" x2="'+x(b)+'" y2="'+(H-PB)+'" stroke="#CCD9E1" stroke-dasharray="2 3" vector-effect="non-scaling-stroke"/>';
-      // density label
-      s+='<text x="'+((x(a)+x(b))/2)+'" y="'+(y(c[2])-7)+'" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" '+
-         'fill="'+(dens>=50?"#C23A2E":"#41525E")+'">'+dens.toFixed(0)+'</text>';
-      cum=b;
+      cum+=COURSE[i][1];
+      if(i<COURSE.length-1)
+        s+='<line x1="'+x(cum)+'" y1="'+PT+'" x2="'+x(cum)+'" y2="'+(H-PB)+'" stroke="#CCD9E1" stroke-dasharray="2 3" vector-effect="non-scaling-stroke"/>';
     }
-    // lake crossing
-    s+='<rect x="'+x(cum)+'" y="'+y(352)+'" width="'+(x(TOT)-x(cum))+'" height="'+(y(348)-y(352))+'" fill="#1D5C9E" opacity=".28"/>';
-    s+='<text x="'+((x(cum)+x(TOT))/2)+'" y="'+(y(352)-7)+'" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="#1D5C9E">LAKE</text>';
 
-    // named landmarks
-    [[11.9,533.9,"Fire Tower — high pt","#0B1620",-9],
-     [40.0,420,"Bitch Hill","#C23A2E",-9],
-     [47.5,351,"Lake Hayward — low pt","#1D5C9E",14]].forEach(function(m){
+    // real elevation line, mapped portion (0 -> ELEV_MAXKM)
+    var pts=[], step=0.2;
+    for(var km=0; km<=ELEV_MAXKM; km+=step) pts.push([km, elevAt(km)]);
+    pts.push([ELEV_MAXKM, elevAt(ELEV_MAXKM)]);
+    var d0="M"+x(0).toFixed(1)+","+(H-PB)+" L"+pts.map(function(p){return x(p[0]).toFixed(1)+","+y(p[1]).toFixed(1);}).join(" L")+" L"+x(ELEV_MAXKM).toFixed(1)+","+(H-PB)+" Z";
+    s+='<path d="'+d0+'" fill="#2E7C55" opacity=".14"/>';
+    var ln="M"+pts.map(function(p){return x(p[0]).toFixed(1)+","+y(p[1]).toFixed(1);}).join(" L");
+    s+='<path d="'+ln+'" fill="none" stroke="#2E7C55" stroke-width="1.6" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>';
+
+    // unmapped tail: dashed flat continuation to the finish
+    s+='<line x1="'+x(ELEV_MAXKM)+'" y1="'+y(elevAt(ELEV_MAXKM))+'" x2="'+x(TOT)+'" y2="'+y(elevAt(ELEV_MAXKM))+'" '+
+       'stroke="#8FA3B0" stroke-width="1.4" stroke-dasharray="3 3" vector-effect="non-scaling-stroke"/>';
+    s+='<text x="'+((x(ELEV_MAXKM)+x(TOT))/2)+'" y="'+(y(elevAt(ELEV_MAXKM))-7)+'" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8FA3B0">not mapped</text>';
+
+    // named landmarks, from the real data
+    [[11.2,528.5,"Fire Tower — high pt","#0B1620",-9],
+     [38.7,427.2,"Bitch Hill","#C23A2E",-9],
+     [46.5,361.8,"toward Lake Hayward — low pt","#1D5C9E",14]].forEach(function(m){
       var mx=x(m[0]), my=y(m[1]);
       s+='<circle cx="'+mx+'" cy="'+my+'" r="3" fill="'+m[3]+'"/>';
       s+='<text x="'+mx+'" y="'+(my+m[4])+'" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="'+m[3]+'">'+m[2]+'</text>';
     });
 
     s+='<line x1="0" y1="'+(H-PB)+'" x2="'+W+'" y2="'+(H-PB)+'" stroke="#CCD9E1" vector-effect="non-scaling-stroke"/>';
-    s+='<text x="2" y="'+(PT-13)+'" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="#8FA3B0" letter-spacing="1.2">METRES CLIMBED PER KM, BY SECTION</text>';
+    s+='<text x="2" y="'+(PT-13)+'" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="#8FA3B0" letter-spacing="1.2">REAL ELEVATION, GPS + LIDAR TERRAIN DATA</text>';
 
     // station labels
     cum=0;
@@ -648,18 +677,20 @@
     svg.innerHTML=s;
 
     // table
-    var tb="",tot=0,cm=0;
+    var tb="",totG=0,totL=0,cm=0;
     for(i=0;i<COURSE.length;i++){
-      var c=COURSE[i]; cm+=c[1]; tot+=c[4];
+      var c=COURSE[i]; cm+=c[1]; totG+=c[4]; totL+=c[5];
       var dens=c[4]/c[1];
       tb+='<tr><td>'+(i+1)+'. '+c[0]+'</td><td>'+cm.toFixed(2)+'</td><td>'+c[1].toFixed(2)+'</td>'+
           '<td>'+Math.round(c[4])+' m</td><td>'+Math.round(c[5])+' m</td>'+
-          '<td class="'+(dens>=50?"bk-hot":(dens<42?"bk-cool":""))+'">'+dens.toFixed(1)+'</td>'+
+          '<td class="'+(dens>=22?"bk-hot":(dens<15?"bk-cool":""))+'">'+dens.toFixed(1)+'</td>'+
           '<td>'+c[6]+'</td><td class="'+(c[7]>=7?"bk-hot":"")+'">'+c[7].toFixed(2)+'</td></tr>';
     }
-    tb+='<tr><td>Lake + Main St</td><td>50.00</td><td>3.48</td><td>0 m</td><td>0 m</td><td>0</td><td>18:00</td><td>—</td></tr>';
-    tb+='<tr><td>Total</td><td>50.00</td><td>50.00</td><td>'+Math.round(tot)+' m</td><td>2,191 m</td><td>47</td><td></td><td>6.38</td></tr>';
+    totG+=TAIL_GAIN; totL+=TAIL_LOSS;
+    tb+='<tr><td>Lake + Main St</td><td>50.00</td><td>3.48</td><td>'+TAIL_GAIN+' m*</td><td>'+TAIL_LOSS+' m*</td><td>2*</td><td>18:00</td><td>—</td></tr>';
+    tb+='<tr><td>Total</td><td>50.00</td><td>50.00</td><td>'+Math.round(totG)+' m</td><td>'+Math.round(totL)+' m</td><td>'+Math.round(totG/50)+'</td><td></td><td>6.38</td></tr>';
     document.getElementById("bk-ctbody").innerHTML=tb;
+    document.getElementById("bk-realgain").textContent=Math.round(totG-TAIL_GAIN)+" m";
   }
 
   /* ---------- station map + segment cards ---------- */
@@ -672,7 +703,7 @@
     for(var i=0;i<COURSE.length;i++){
       cum+=COURSE[i][1];
       var dens=COURSE[i][4]/COURSE[i][1];
-      marks.push({km:cum,name:COURSE[i][0]==="End of trail"?"End of trail":COURSE[i][0],hot:dens>=50,cool:dens<42});
+      marks.push({km:cum,name:COURSE[i][0]==="End of trail"?"End of trail":COURSE[i][0],hot:dens>=22,cool:dens<15});
     }
     marks.push({km:50,name:"Finish · Main St",big:true});
 
@@ -698,7 +729,7 @@
     for(var i=0;i<COURSE.length;i++){
       var c=COURSE[i], a=cum; cum+=c[1];
       var dens=c[4]/c[1], d=SEGDESC[i];
-      var tagc=dens>=50?"#C23A2E":(dens<42?"#2E7C55":"#41525E");
+      var tagc=dens>=22?"#C23A2E":(dens<15?"#2E7C55":"#41525E");
       s+='<div class="bk-seg"><div class="bk-segnum">'+(i+1)+'</div><div class="bk-segbody">'+
          '<div class="bk-segtop"><span class="bk-segname">'+d[0]+'</span>'+
          '<span class="bk-segtag" style="background:'+tagc+'">'+dens.toFixed(0)+' m/km</span>'+
