@@ -191,9 +191,7 @@
   .bk-tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--red)}
   .bk-tabpanel[hidden]{display:none}
 
-  /* course: map + segments */
-  .bk-mapwrap{position:relative;margin-top:6px}
-  .bk-mapsvg{display:block;width:100%;height:auto;overflow:visible}
+  /* course: segments */
   .bk-segs{margin-top:20px;display:flex;flex-direction:column}
   .bk-seg{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--rule-2)}
   .bk-seg:last-child{border-bottom:0}
@@ -373,18 +371,13 @@
       * Real data covers this leg only partway (to km 49.15) — the mapped stretch is measured flat, and the final
       ~0.85 km of lake ice and Main Street pavement isn't in the trail dataset at all.
     </p>
-  </div>
 
-  <div class="bk-card bk-course" style="margin-top:14px">
-    <div class="bk-cap">
+    <div class="bk-cap" style="margin-top:8px;padding-top:14px;border-top:1px solid var(--rule-2)">
       <div>
         <h2>Station by station</h2>
-        <p>Start to finish, in order. Red markers are the steepest legs by real climbing-per-km (≥22 m/km), green the mildest (&lt;15 m/km).</p>
+        <p>Numbered 1–8 on the profile above, in order start to finish. Red badges are the steepest legs by real
+           climbing-per-km (≥22 m/km), green the mildest (&lt;15 m/km).</p>
       </div>
-    </div>
-
-    <div class="bk-mapwrap">
-      <svg class="bk-mapsvg" id="bk-map" viewBox="0 0 960 130" role="img" aria-label="Birkie course stations, start to finish"></svg>
     </div>
 
     <div class="bk-segs" id="bk-segs"></div>
@@ -664,16 +657,29 @@
     });
 
     s+='<line x1="0" y1="'+(H-PB)+'" x2="'+W+'" y2="'+(H-PB)+'" stroke="#CCD9E1" vector-effect="non-scaling-stroke"/>';
-    s+='<text x="2" y="'+(PT-13)+'" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="#8FA3B0" letter-spacing="1.2">REAL ELEVATION, GPS + LIDAR TERRAIN DATA</text>';
+    s+='<text x="2" y="'+(PT-13)+'" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="#8FA3B0" letter-spacing="1.2">CABLE → HAYWARD · REAL ELEVATION, GPS + LIDAR TERRAIN DATA</text>';
 
-    // station labels
+    // station labels + numbered markers on the real curve (1-8, matching the cards below)
     cum=0;
     for(i=0;i<COURSE.length;i++){
       cum+=COURSE[i][1];
       var lbl=COURSE[i][0]==="End of trail"?"Trail end":COURSE[i][0];
       s+='<text x="'+(x(cum)-3)+'" y="'+(H-PB+13)+'" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="#41525E">'+lbl+'</text>';
       s+='<text x="'+(x(cum)-3)+'" y="'+(H-PB+24)+'" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8FA3B0">'+cum.toFixed(1)+'k</text>';
+      var dens=COURSE[i][4]/COURSE[i][1];
+      var mc=dens>=22?"#C23A2E":(dens<15?"#2E7C55":"#41525E");
+      var mx=x(cum), my=y(elevAt(cum));
+      s+='<circle cx="'+mx+'" cy="'+my+'" r="8" fill="'+mc+'" stroke="#fff" stroke-width="1.5"/>';
+      s+='<text x="'+mx+'" y="'+(my+3)+'" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" font-weight="700" fill="#fff">'+(i+1)+'</text>';
     }
+
+    // start / finish, direction of travel
+    s+='<circle cx="'+x(0)+'" cy="'+y(elevAt(0))+'" r="4.5" fill="#0B1620"/>';
+    s+='<text x="'+(x(0)+7)+'" y="'+(y(elevAt(0))-8)+'" font-family="IBM Plex Mono,monospace" font-size="9.5" font-weight="600" fill="#0B1620">CABLE · START</text>';
+    var fx=x(TOT), fy=y(elevAt(ELEV_MAXKM));
+    s+='<circle cx="'+fx+'" cy="'+fy+'" r="4.5" fill="#0B1620"/>';
+    s+='<text x="'+(fx-7)+'" y="'+(fy-8)+'" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="9.5" font-weight="600" fill="#0B1620">HAYWARD · FINISH</text>';
+
     svg.innerHTML=s;
 
     // table
@@ -693,37 +699,7 @@
     document.getElementById("bk-realgain").textContent=Math.round(totG-TAIL_GAIN)+" m";
   }
 
-  /* ---------- station map + segment cards ---------- */
-  function stationMap(){
-    var svg=document.getElementById("bk-map");
-    var W=960,H=130,PL=6,PR=6,Y=60,TOT=50.0;
-    var x=function(km){ return PL+(W-PL-PR)*(km/TOT); };
-    var marks=[{km:0,name:"Start · Cable",big:true}];
-    var cum=0;
-    for(var i=0;i<COURSE.length;i++){
-      cum+=COURSE[i][1];
-      var dens=COURSE[i][4]/COURSE[i][1];
-      marks.push({km:cum,name:COURSE[i][0]==="End of trail"?"End of trail":COURSE[i][0],hot:dens>=22,cool:dens<15});
-    }
-    marks.push({km:50,name:"Finish · Main St",big:true});
-
-    var s='<line x1="'+x(0)+'" y1="'+Y+'" x2="'+x(50)+'" y2="'+Y+'" stroke="#CCD9E1" stroke-width="2" vector-effect="non-scaling-stroke"/>';
-    marks.forEach(function(m,i){
-      var mx=x(m.km), up=i%2===0, ty=up?Y-16:Y+26, ly=up?Y-24:Y+18;
-      var anchor=i===0?"start":(i===marks.length-1?"end":"middle");
-      var tx=i===0?mx-4:(i===marks.length-1?mx+4:mx);
-      var c=m.big?"#0B1620":(m.hot?"#C23A2E":(m.cool?"#2E7C55":"#41525E"));
-      var r=m.big?5.5:4;
-      s+='<line x1="'+mx+'" y1="'+Y+'" x2="'+mx+'" y2="'+(up?Y-9:Y+9)+'" stroke="'+c+'" stroke-width="1.5" vector-effect="non-scaling-stroke"/>';
-      s+='<circle cx="'+mx+'" cy="'+Y+'" r="'+r+'" fill="'+c+'"/>';
-      if(m.big) s+='<circle cx="'+mx+'" cy="'+Y+'" r="'+(r+2.5)+'" fill="none" stroke="'+c+'" stroke-width="1" opacity=".5"/>';
-      s+='<text x="'+tx+'" y="'+ly+'" text-anchor="'+anchor+'" font-family="IBM Plex Mono,monospace" font-size="9.5" '+
-         'font-weight="'+(m.big?"600":"400")+'" fill="'+(m.big?"#0B1620":"#41525E")+'">'+m.name+'</text>';
-      s+='<text x="'+tx+'" y="'+ty+'" text-anchor="'+anchor+'" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="#8FA3B0">'+m.km.toFixed(1)+'k</text>';
-    });
-    svg.innerHTML=s;
-  }
-
+  /* ---------- segment cards ---------- */
   function buildSegs(){
     var el=document.getElementById("bk-segs"), s="", cum=0;
     for(var i=0;i<COURSE.length;i++){
@@ -924,7 +900,7 @@
   document.getElementById("bk-todaybtn").onclick=function(){ cur=nowWeek(); render(); };
   document.getElementById("bk-reset").onclick=function(){ log={}; merge(); save(); render(); };
 
-  phases(); courseChart(); stationMap(); buildSegs();
+  phases(); courseChart(); buildSegs();
   showTab(location.hash==="#course"?"course":"prep");
   fetchData().then(load).then(function(){ merge(); cur=nowWeek(); render(); });
 })();
