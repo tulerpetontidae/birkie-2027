@@ -37,8 +37,12 @@
     display:flex;justify-content:space-between;align-items:flex-end;gap:28px;flex-wrap:wrap;
     position:relative;overflow:hidden;
   }
-  .bk-hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;
+  .bk-hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;z-index:3;
     background:linear-gradient(90deg,var(--green) 0 23%,var(--blue) 23% 61%,var(--violet) 61% 87%,var(--red) 87% 100%)}
+  /* three flat ranges, bottom-anchored, behind the type */
+  .bk-heroart{position:absolute;left:0;right:0;bottom:0;width:100%;height:auto;
+    z-index:1;pointer-events:none;display:block}
+  .bk-hero > div{position:relative;z-index:2}
   .bk-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.5)}
   .bk-title{font-family:var(--disp);font-weight:800;font-size:clamp(40px,7.4vw,76px);line-height:.82;text-transform:uppercase;margin:10px 0 0}
   .bk-facts{margin-top:14px;display:flex;gap:22px;flex-wrap:wrap}
@@ -179,6 +183,8 @@
     .bk-season,.bk-course{padding:14px 12px 8px}
     .bk-rows{padding:2px 14px 12px}
     .bk-phlab{display:none}
+    /* hero grows tall when content wraps — stretch the ranges so they don't read as a thin strip */
+    .bk-heroart{height:132px}
   }
   @media (prefers-reduced-motion:reduce){ .bk-fill,.bk-pip{transition:none} }
 
@@ -224,6 +230,11 @@
 <div class="bk">
 
   <div class="bk-hero">
+    <svg class="bk-heroart" viewBox="0 0 960 210" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path fill="#FFFFFF" opacity=".07" d="M-10,210 L-10,150 L90,120 L200,142 L330,88 L430,126 L545,80 L665,118 L790,96 L890,130 L970,116 L970,210 Z"/>
+      <path fill="#4FB07C" opacity=".13" d="M-10,210 L-10,176 L100,150 L210,172 L335,124 L445,162 L560,118 L680,154 L800,130 L900,164 L970,150 L970,210 Z"/>
+      <path fill="#1D5C9E" opacity=".22" d="M-10,210 L-10,196 L120,172 L250,193 L400,162 L540,190 L680,166 L820,192 L970,178 L970,210 Z"/>
+    </svg>
     <div>
       <div class="bk-eyebrow">Saturday 27 February 2027 · Cable → Hayward, Wisconsin</div>
       <h1 class="bk-title">American<br>Birkebeiner</h1>
