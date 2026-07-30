@@ -181,6 +181,30 @@
     .bk-phlab{display:none}
   }
   @media (prefers-reduced-motion:reduce){ .bk-fill,.bk-pip{transition:none} }
+
+  /* tabs */
+  .bk-tabs{display:flex;gap:2px;margin-top:18px;border-bottom:1px solid var(--rule)}
+  .bk-tab{font-family:var(--disp);font-weight:600;font-size:15px;text-transform:uppercase;letter-spacing:.02em;
+    background:none;border:0;border-bottom:2.5px solid transparent;padding:11px 4px;margin-right:22px;
+    color:var(--muted);cursor:pointer;transition:color .12s ease}
+  .bk-tab:hover{color:var(--ink-2)}
+  .bk-tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--red)}
+  .bk-tabpanel[hidden]{display:none}
+
+  /* course: map + segments */
+  .bk-mapwrap{position:relative;margin-top:6px}
+  .bk-mapsvg{display:block;width:100%;height:auto;overflow:visible}
+  .bk-segs{margin-top:20px;display:flex;flex-direction:column}
+  .bk-seg{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--rule-2)}
+  .bk-seg:last-child{border-bottom:0}
+  .bk-segnum{font-family:var(--disp);font-weight:800;font-size:22px;color:var(--muted-d);width:28px;flex-shrink:0;line-height:1.3}
+  .bk-segbody{min-width:0;flex:1}
+  .bk-segtop{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+  .bk-segname{font-weight:600;font-size:14.5px}
+  .bk-segkm{font-family:var(--mono);font-size:11px;color:var(--muted)}
+  .bk-segtag{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:99px;color:#fff}
+  .bk-segtext{font-size:13px;color:var(--ink-2);line-height:1.5;max-width:72ch}
+  .bk-source{font-size:11.5px;color:var(--muted);margin-top:16px;max-width:78ch;line-height:1.5}
 </style>
 
 <style>
@@ -215,6 +239,13 @@
       <div class="bk-days"><b id="bk-days">—</b><span>days to the gun</span></div>
     </div>
   </div>
+
+  <div class="bk-tabs" id="bk-tabs">
+    <button class="bk-tab" data-tab="prep" aria-selected="true">Preparation</button>
+    <button class="bk-tab" data-tab="course" aria-selected="false">The course</button>
+  </div>
+
+  <div class="bk-tabpanel" id="bk-tab-prep">
 
   <div class="bk-card bk-season">
     <div class="bk-cap">
@@ -264,41 +295,6 @@
     </div>
   </div>
 
-  <div class="bk-card bk-course">
-    <div class="bk-cap">
-      <div>
-        <h2>The course</h2>
-        <p>Official section data. The band shows the elevation range within each section — the trail is climbing and
-           descending constantly inside every one of them, so the true line is far busier than the envelope.</p>
-      </div>
-    </div>
-
-    <div class="bk-chartwrap">
-      <svg class="bk-svg" id="bk-course" viewBox="0 0 960 230" preserveAspectRatio="none" role="img" aria-label="Birkie skate course elevation by section"></svg>
-    </div>
-
-    <div class="bk-keys">
-      <div class="bk-key"><b>2,179 m</b><span>climbed in one morning — more than a three-day mountain trip</span></div>
-      <div class="bk-key"><b>39–56</b><span>metres per km, every single section. There is no easy half</span></div>
-      <div class="bk-key"><b>Section 8</b><span>steepest <em style="font-style:normal">and</em> fastest-required leg of the race — and it comes at 41 km</span></div>
-    </div>
-
-    <div class="bk-tblwrap">
-      <table class="bk-tbl">
-        <thead><tr>
-          <th>Leg</th><th>Cum. km</th><th>Length</th><th>Gain</th><th>Loss</th><th>m / km</th><th>Cut-off</th><th>Speed needed</th>
-        </tr></thead>
-        <tbody id="bk-ctbody"></tbody>
-      </table>
-    </div>
-    <p style="font-size:12.5px;color:var(--muted);margin:12px 0 14px;max-width:78ch">
-      Cumulative pace to the finish is 6.38 km/h. But the segment requirements matter more: ski the first 12 km at an
-      effort that feels too easy, make time between OO and Mosquito Brook where the course is mildest, and arrive at
-      Fish Hatchery with something left — the hardest 5 km starts there, and the flat lake crossing after it gives
-      nothing back.
-    </p>
-  </div>
-
   <div class="bk-card bk-pub">
     <div class="bk-shead">Publish</div>
     <div class="bk-pubbody">
@@ -325,6 +321,73 @@
     </div>
     <button class="bk-reset" id="bk-reset">Clear everything logged</button>
   </div>
+
+  </div><!-- /bk-tab-prep -->
+
+  <div class="bk-tabpanel" id="bk-tab-course" hidden>
+
+  <div class="bk-card bk-course">
+    <div class="bk-cap">
+      <div>
+        <h2>Cable to Hayward, 50 km</h2>
+        <p>Start elevation ~410 m at the OO/Telemark start near Cable, climbing to a high point of ~530 m at the
+           Fire Tower (km 12), down to ~359 m crossing Lake Hayward, finishing at ~366 m on Main Street. Eight
+           official trail-cabin sections, sourced from the Birkie's own trail markers.</p>
+      </div>
+    </div>
+
+    <div class="bk-chartwrap">
+      <svg class="bk-svg" id="bk-course" viewBox="0 0 960 230" preserveAspectRatio="none" role="img" aria-label="Birkie skate course elevation by section"></svg>
+    </div>
+    <p style="font-size:11.5px;color:var(--muted);margin:8px 0 0">
+      The band is the true elevation range within each section — the line is illustrative of how it moves inside
+      that range, not a GPS trace. Named landmarks are marked where they fall.
+    </p>
+
+    <div class="bk-keys">
+      <div class="bk-key"><b>2,179 m</b><span>climbed in one morning — more than a three-day mountain trip</span></div>
+      <div class="bk-key"><b>530 m</b><span>high point, at the Fire Tower, km 12 — the course's only real summit</span></div>
+      <div class="bk-key"><b>39–56</b><span>metres per km, every single section. There is no easy half</span></div>
+      <div class="bk-key"><b>Section 8</b><span>steepest <em style="font-style:normal">and</em> fastest-required leg of the race — and it comes at 41 km</span></div>
+    </div>
+
+    <div class="bk-tblwrap">
+      <table class="bk-tbl">
+        <thead><tr>
+          <th>Leg</th><th>Cum. km</th><th>Length</th><th>Gain</th><th>Loss</th><th>m / km</th><th>Cut-off</th><th>Speed needed</th>
+        </tr></thead>
+        <tbody id="bk-ctbody"></tbody>
+      </table>
+    </div>
+    <p style="font-size:12.5px;color:var(--muted);margin:12px 0 14px;max-width:78ch">
+      Cumulative pace to the finish is 6.38 km/h. But the segment requirements matter more: ski the first 12 km at an
+      effort that feels too easy, make time between OO and Mosquito Brook where the course is mildest, and arrive at
+      Fish Hatchery with something left — the hardest 5 km starts there, and the flat lake crossing after it gives
+      nothing back.
+    </p>
+  </div>
+
+  <div class="bk-card bk-course" style="margin-top:14px">
+    <div class="bk-cap">
+      <div>
+        <h2>Station by station</h2>
+        <p>Start to finish, in order. Red markers are the steepest legs (≥50 m climbed per km), green the mildest.</p>
+      </div>
+    </div>
+
+    <div class="bk-mapwrap">
+      <svg class="bk-mapsvg" id="bk-map" viewBox="0 0 960 130" role="img" aria-label="Birkie course stations, start to finish"></svg>
+    </div>
+
+    <div class="bk-segs" id="bk-segs"></div>
+
+    <p class="bk-source">Segment boundaries follow the Birkie's official trail-cabin markers (Timber Trail, Fire
+      Tower, Boedecker, OO, Gravel Pit, Mosquito Brook, Fish Hatchery). Terrain notes compiled from the Birkie trail
+      guide and race-strategy write-ups from athletes who've raced it — treat the named hills as course lore, not
+      surveyed fact, and expect snow conditions to change how any of this actually skis.</p>
+  </div>
+
+  </div><!-- /bk-tab-course -->
 </div>
 
 <script>
@@ -366,6 +429,19 @@
     ["Mosquito Brook",6.24,444.15,396.27,271.06,282.46,"15:55",6.44],
     ["Fish Hatchery",5.65,434.31,366.37,292.30,293.37,"16:45",6.84],
     ["End of trail",5.23,420.04,350.15,293.37,295.66,"—",7.12]
+  ];
+
+  /* name, teaser, text */
+  var SEGDESC=[
+    ["Timber Trail","Out of the start","Out onto the Powerline Hills while the field is still bunched — expect traffic and blocked lines. A short, sharp pull known among racers as The Wall arrives before the trail cabin that closes this leg."],
+    ["Fire Tower","The high point","Snowmobile Hill's fast, technical descent gives way to a long, sustained climb to the course's high point — about 530 m, at the site of the old fire tower. The steepest sustained pull of the day so far."],
+    ["Boedecker","The Birkie Drop","A fast ~5% descent off Fire Tower — the Birkie Drop — scatters the field before Boedecker Hill pulls it back together on the climb out."],
+    ["OO","Flattest mile on course","The most drafting-friendly stretch on the course, climbing gently to the Hwy OO bridge, where the trail merges with the Kortelopet field and the crowd noise picks up."],
+    ["Gravel Pit","Longest leg","Long, easy downhill running out of OO, then a grinding climb of several kilometres back up to Gravel Pit. The longest section on the course — pace it, don't race it."],
+    ["Mosquito Brook","Rolling, momentum-fed","Small rolling hills that reward momentum over raw power. Snow here can go heavy late in the day as the trail softens underfoot."],
+    ["Fish Hatchery","The hardest 5 km","The 39K Hill grinds up narrow and steep, then Bitch Hill hits at km 40 — a short, brutal pitch in front of a costumed, screaming crowd. Widely reckoned the hardest stretch of the race."],
+    ["End of trail","One more set","Son of Bitch Hill answers immediately, then Sunset Hill and Josie's Hill — the last real climbing of the day — before the trail tips down toward the lake."],
+    ["Lake + Main St","Flat, then a sprint","Four kilometres flat across Lake Hayward's ice, often straight into a headwind with nothing to hide behind. The International Bridge's short, steep pitch is the last climb of the day, then it's a hard-packed sprint down Main Street to the line."]
   ];
 
   var SYNC={
@@ -549,6 +625,15 @@
     s+='<rect x="'+x(cum)+'" y="'+y(352)+'" width="'+(x(TOT)-x(cum))+'" height="'+(y(348)-y(352))+'" fill="#1D5C9E" opacity=".28"/>';
     s+='<text x="'+((x(cum)+x(TOT))/2)+'" y="'+(y(352)-7)+'" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="#1D5C9E">LAKE</text>';
 
+    // named landmarks
+    [[11.9,533.9,"Fire Tower — high pt","#0B1620",-9],
+     [40.0,420,"Bitch Hill","#C23A2E",-9],
+     [47.5,351,"Lake Hayward — low pt","#1D5C9E",14]].forEach(function(m){
+      var mx=x(m[0]), my=y(m[1]);
+      s+='<circle cx="'+mx+'" cy="'+my+'" r="3" fill="'+m[3]+'"/>';
+      s+='<text x="'+mx+'" y="'+(my+m[4])+'" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="'+m[3]+'">'+m[2]+'</text>';
+    });
+
     s+='<line x1="0" y1="'+(H-PB)+'" x2="'+W+'" y2="'+(H-PB)+'" stroke="#CCD9E1" vector-effect="non-scaling-stroke"/>';
     s+='<text x="2" y="'+(PT-13)+'" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="#8FA3B0" letter-spacing="1.2">METRES CLIMBED PER KM, BY SECTION</text>';
 
@@ -576,6 +661,70 @@
     tb+='<tr><td>Total</td><td>50.00</td><td>50.00</td><td>'+Math.round(tot)+' m</td><td>2,191 m</td><td>47</td><td></td><td>6.38</td></tr>';
     document.getElementById("bk-ctbody").innerHTML=tb;
   }
+
+  /* ---------- station map + segment cards ---------- */
+  function stationMap(){
+    var svg=document.getElementById("bk-map");
+    var W=960,H=130,PL=6,PR=6,Y=60,TOT=50.0;
+    var x=function(km){ return PL+(W-PL-PR)*(km/TOT); };
+    var marks=[{km:0,name:"Start · Cable",big:true}];
+    var cum=0;
+    for(var i=0;i<COURSE.length;i++){
+      cum+=COURSE[i][1];
+      var dens=COURSE[i][4]/COURSE[i][1];
+      marks.push({km:cum,name:COURSE[i][0]==="End of trail"?"End of trail":COURSE[i][0],hot:dens>=50,cool:dens<42});
+    }
+    marks.push({km:50,name:"Finish · Main St",big:true});
+
+    var s='<line x1="'+x(0)+'" y1="'+Y+'" x2="'+x(50)+'" y2="'+Y+'" stroke="#CCD9E1" stroke-width="2" vector-effect="non-scaling-stroke"/>';
+    marks.forEach(function(m,i){
+      var mx=x(m.km), up=i%2===0, ty=up?Y-16:Y+26, ly=up?Y-24:Y+18;
+      var anchor=i===0?"start":(i===marks.length-1?"end":"middle");
+      var tx=i===0?mx-4:(i===marks.length-1?mx+4:mx);
+      var c=m.big?"#0B1620":(m.hot?"#C23A2E":(m.cool?"#2E7C55":"#41525E"));
+      var r=m.big?5.5:4;
+      s+='<line x1="'+mx+'" y1="'+Y+'" x2="'+mx+'" y2="'+(up?Y-9:Y+9)+'" stroke="'+c+'" stroke-width="1.5" vector-effect="non-scaling-stroke"/>';
+      s+='<circle cx="'+mx+'" cy="'+Y+'" r="'+r+'" fill="'+c+'"/>';
+      if(m.big) s+='<circle cx="'+mx+'" cy="'+Y+'" r="'+(r+2.5)+'" fill="none" stroke="'+c+'" stroke-width="1" opacity=".5"/>';
+      s+='<text x="'+tx+'" y="'+ly+'" text-anchor="'+anchor+'" font-family="IBM Plex Mono,monospace" font-size="9.5" '+
+         'font-weight="'+(m.big?"600":"400")+'" fill="'+(m.big?"#0B1620":"#41525E")+'">'+m.name+'</text>';
+      s+='<text x="'+tx+'" y="'+ty+'" text-anchor="'+anchor+'" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="#8FA3B0">'+m.km.toFixed(1)+'k</text>';
+    });
+    svg.innerHTML=s;
+  }
+
+  function buildSegs(){
+    var el=document.getElementById("bk-segs"), s="", cum=0;
+    for(var i=0;i<COURSE.length;i++){
+      var c=COURSE[i], a=cum; cum+=c[1];
+      var dens=c[4]/c[1], d=SEGDESC[i];
+      var tagc=dens>=50?"#C23A2E":(dens<42?"#2E7C55":"#41525E");
+      s+='<div class="bk-seg"><div class="bk-segnum">'+(i+1)+'</div><div class="bk-segbody">'+
+         '<div class="bk-segtop"><span class="bk-segname">'+d[0]+'</span>'+
+         '<span class="bk-segtag" style="background:'+tagc+'">'+dens.toFixed(0)+' m/km</span>'+
+         '<span class="bk-segkm">'+a.toFixed(1)+'–'+cum.toFixed(1)+' km · +'+Math.round(c[4])+' m / −'+Math.round(c[5])+' m</span></div>'+
+         '<div class="bk-segtext">'+d[2]+'</div></div></div>';
+    }
+    var last=SEGDESC[SEGDESC.length-1];
+    s+='<div class="bk-seg"><div class="bk-segnum">—</div><div class="bk-segbody">'+
+       '<div class="bk-segtop"><span class="bk-segname">'+last[0]+'</span>'+
+       '<span class="bk-segkm">46.5–50.0 km</span></div>'+
+       '<div class="bk-segtext">'+last[2]+'</div></div></div>';
+    el.innerHTML=s;
+  }
+
+  /* ---------- tabs ---------- */
+  function showTab(t){
+    document.getElementById("bk-tab-prep").hidden=(t!=="prep");
+    document.getElementById("bk-tab-course").hidden=(t!=="course");
+    Array.prototype.forEach.call(document.querySelectorAll(".bk-tab"),function(b){
+      b.setAttribute("aria-selected",b.getAttribute("data-tab")===t?"true":"false");
+    });
+    try{ history.replaceState(null,"","#"+t); }catch(e){}
+  }
+  Array.prototype.forEach.call(document.querySelectorAll(".bk-tab"),function(b){
+    b.addEventListener("click",function(){ showTab(b.getAttribute("data-tab")); });
+  });
 
   function pips(count,target,color,set){
     var d=document.createElement("div"); d.className="bk-pips";
@@ -744,7 +893,8 @@
   document.getElementById("bk-todaybtn").onclick=function(){ cur=nowWeek(); render(); };
   document.getElementById("bk-reset").onclick=function(){ log={}; merge(); save(); render(); };
 
-  phases(); courseChart();
+  phases(); courseChart(); stationMap(); buildSegs();
+  showTab(location.hash==="#course"?"course":"prep");
   fetchData().then(load).then(function(){ merge(); cur=nowWeek(); render(); });
 })();
 </script>
