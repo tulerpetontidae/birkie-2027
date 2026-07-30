@@ -203,6 +203,15 @@
   .bk-segtag{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:99px;color:#fff}
   .bk-segtext{font-size:13px;color:var(--ink-2);line-height:1.5;max-width:72ch}
   .bk-source{font-size:11.5px;color:var(--muted);margin-top:16px;max-width:78ch;line-height:1.5}
+
+  .bk-est{background:#F4F8FA;border:1px solid var(--rule-2);border-radius:3px;padding:14px 16px;margin:14px 0}
+  .bk-esthead{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:9px}
+  .bk-estrow{display:flex;justify-content:space-between;gap:14px;padding:5px 0;font-size:12.5px;color:var(--ink-2);border-bottom:1px solid var(--rule-2)}
+  .bk-estrow:last-of-type{border-bottom:0}
+  .bk-estrow b{font-family:var(--mono);font-weight:600;color:var(--ink);white-space:nowrap}
+  .bk-estrow.bk-mine{color:var(--ink);font-weight:600}
+  .bk-estrow.bk-mine b{color:var(--green)}
+  .bk-estnote{font-size:11.5px;color:var(--muted);line-height:1.5;margin-top:10px;max-width:78ch}
 </style>
 
 <style>
@@ -346,8 +355,16 @@
       stretch is not hiding any climbing.
     </p>
 
+    <div class="bk-est">
+      <div class="bk-esthead">Total climbing, depending who you ask</div>
+      <div class="bk-estrow"><span>Trail Genius course-tour data (fine-grained trace, every ripple counted)</span><b>2,179 m</b></div>
+      <div class="bk-estrow"><span>Worldloppet's official race page</span><b>1,398 m</b></div>
+      <div class="bk-estrow"><span>Independent ~2,300-point GPS-trace analysis</span><b>1,041 m</b></div>
+      <div class="bk-estrow bk-mine"><span>This page — OSM trail geometry × USGS 3DEP LIDAR, 100 m sampling</span><b id="bk-realgain">— m</b></div>
+      <div class="bk-estnote">All four are real measurements, not guesses — they disagree because total climb is sampling-resolution-dependent: finer sampling always counts more small ripples, and unfiltered fine-grained traces (like Trail Genius's) are also prone to counting raw GPS/barometric noise as real elevation change. Read this page's figure as a floor and Trail Genius's 2,179 m as a ceiling — the true number most likely sits in between, closer to the Worldloppet and independent-GPS figures.</div>
+    </div>
+
     <div class="bk-keys">
-      <div class="bk-key"><b id="bk-realgain">— m</b><span>measured climbing over the mapped 49.15 km — well short of round-number race-day claims, but this is GPS and LIDAR, not a press release</span></div>
       <div class="bk-key"><b>528 m</b><span>high point, at the Fire Tower, km 11.2 — the course's only real summit</span></div>
       <div class="bk-key"><b>Fire Tower</b><span>steepest leg by real climbing-per-km — and it lands early, while legs are still fresh</span></div>
       <div class="bk-key"><b>7.12 km/h</b><span>needed on Section 8 (End of trail) — the tightest cut-off margin of the day, regardless of terrain</span></div>
@@ -385,11 +402,13 @@
     <p class="bk-source">Segment boundaries follow the Birkie's official trail-cabin markers (Timber Trail, Fire
       Tower, Boedecker, OO, Gravel Pit, Mosquito Brook, Fish Hatchery), cross-checked against the "American
       Birkebeiner Trail" route relation in OpenStreetMap (ODbL) — its own named way-segments land within a few
-      hundred metres of the same markers. Elevation is measured, not estimated: that OSM geometry sampled every
-      100 m against the USGS 3DEP 1-metre LIDAR elevation model. Hill names and terrain notes are compiled from
-      the Birkie trail guide and race-strategy write-ups from athletes who've raced it — treat the named hills as
-      course lore, the elevation numbers as real, and expect snow conditions to change how any of this actually
-      skis.</p>
+      hundred metres of the same markers, and against Trail Genius's own published section-by-section elevation
+      data (trailgenius.com), which uses the same eight boundaries. Elevation on this page is measured, not
+      estimated: that OSM geometry sampled every 100 m against the USGS 3DEP 1-metre LIDAR elevation model — see
+      the climbing-estimate comparison above for how that stacks up against Trail Genius, Worldloppet, and an
+      independent GPS analysis. Hill names and terrain notes are compiled from the Birkie trail guide and
+      race-strategy write-ups from athletes who've raced it — treat the named hills as course lore, the elevation
+      numbers as real, and expect snow conditions to change how any of this actually skis.</p>
   </div>
 
   </div><!-- /bk-tab-course -->
@@ -696,7 +715,7 @@
     tb+='<tr><td>Lake + Main St</td><td>50.00</td><td>3.48</td><td>'+TAIL_GAIN+' m*</td><td>'+TAIL_LOSS+' m*</td><td>2*</td><td>18:00</td><td>—</td></tr>';
     tb+='<tr><td>Total</td><td>50.00</td><td>50.00</td><td>'+Math.round(totG)+' m</td><td>'+Math.round(totL)+' m</td><td>'+Math.round(totG/50)+'</td><td></td><td>6.38</td></tr>';
     document.getElementById("bk-ctbody").innerHTML=tb;
-    document.getElementById("bk-realgain").textContent=Math.round(totG-TAIL_GAIN)+" m";
+    document.getElementById("bk-realgain").textContent=Math.round(totG)+" m";
   }
 
   /* ---------- segment cards ---------- */
