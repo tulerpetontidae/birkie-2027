@@ -1,11 +1,12 @@
 {
-  "stamp": "2026-07-30T12:34",
+  "stamp": "2026-07-30T20:09",
   "through": "30 Jul 2026",
   "weeks": {
-    "1": { "aer": 84, "vert": 331, "strength": 2, "ski": 0, "long": 0, "cont": 0 }
+    "1": { "aer": 115, "vert": 331, "strength": 2, "ski": 0, "long": 0, "cont": 0 }
   },
   "acts": {
     "1": [
+      { "n": "Evening SkiErg", "d": "Thu 30 Jul", "t": "31m · 934 strokes · 279 Cal · 151 bpm", "k": "aer" },
       { "n": "The stairs of despair", "d": "Thu 30 Jul", "t": "46m · 5.4 km · 308 m · 166 bpm", "k": "aer" },
       { "n": "Evening Rock Climb", "d": "Wed 29 Jul", "t": "1h 44m · effort 39", "k": "str" },
       { "n": "Afternoon Sail", "d": "Tue 28 Jul", "t": "3h 58m · effort 33 · not counted", "k": "skip" },
