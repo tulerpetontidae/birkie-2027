@@ -432,22 +432,22 @@
 
   /* aerobicH, longMin, strength, thr, vo2, speed, ski, label, phase, vertM */
   var PLAN=[
-    [4.5,105,2,0,0,1,0,"Base","base",500],[4.5,105,2,0,0,1,0,"Base","base",500],
-    [5.0,120,2,0,0,1,0,"Base","base",550],[3.5,90,2,0,0,1,0,"Base · recovery","base",350],
-    [5.0,120,2,0,0,1,0,"Base","base",600],[5.5,120,2,0,0,1,0,"Base","base",650],
-    [5.5,135,2,0,0,1,0,"Base","base",650],
-    [4.0,90,2,0,0,1,0,"Build · recovery","build",450],[6.0,150,2,1,0,1,0,"Build","build",700],
-    [6.5,165,2,1,0,1,0,"Build","build",800],[6.5,180,2,1,0,1,0,"Build","build",800],
-    [5.0,120,2,0,0,1,0,"Build · recovery","build",550],[7.0,180,2,1,0,1,0,"Build","build",900],
-    [7.0,180,2,1,0,1,0,"Build","build",1000],[7.5,195,2,1,0,1,0,"Build","build",1000],
-    [5.5,135,2,0,0,1,0,"Build · recovery","build",650],[8.0,195,2,1,0,1,0,"Build","build",1200],
-    [8.0,210,2,1,0,1,0,"Build","build",1300],[5.5,135,2,0,0,1,0,"Build · recovery","build",700],
-    [8.0,180,2,1,1,1,2,"Snow","snow",1000],[8.0,180,2,1,1,1,2,"Snow","snow",1100],
-    [8.5,195,2,1,1,1,2,"Snow","snow",1200],[8.5,195,2,1,1,1,2,"Snow","snow",1200],
-    [6.0,150,2,0,0,1,2,"Snow · recovery","snow",800],[8.5,210,2,1,1,1,2,"Snow","snow",1300],
-    [9.0,210,2,1,1,1,2,"Snow","snow",1400],[9.0,225,2,1,1,1,2,"Snow · tune-up race","snow",1400],
-    [9.0,240,1,0,0,1,2,"Peak · 40K ski","peak",1500],[7.0,180,1,1,0,1,2,"Sharpen","peak",1000],
-    [5.0,90,1,0,1,1,1,"Taper","peak",500],[2.5,0,0,0,0,1,1,"Race week","peak",200]
+    [9.25,120,2,1,1,1,0,"Base · intensity","base",1500],[7,90,2,0,0,1,0,"Base · recovery","base",1100],
+    [10.25,135,2,1,1,1,0,"Base · intensity","base",1650],[12,165,2,1,0,1,0,"Base · volume","base",1900],
+    [13.5,180,2,1,0,1,0,"Base · volume","base",2150],[6.25,90,2,0,0,1,0,"Base · recovery","base",1000],
+    [10,135,2,1,1,1,0,"Base · intensity","base",1600],[11.75,150,2,1,1,1,0,"Build · intensity","build",1900],
+    [13.25,180,2,1,0,1,0,"Build · volume","build",2100],[6.5,90,2,0,0,1,0,"Build · recovery","build",1050],
+    [9.75,135,2,1,2,1,0,"Build · intensity","build",1550],[10.25,135,2,1,2,1,0,"Build · intensity","build",1650],
+    [13,165,2,1,0,1,0,"Build · volume","build",2100],[6,75,2,0,0,1,0,"Build · recovery","build",950],
+    [10.5,135,2,2,0,1,0,"Build · threshold","build",1700],[13.5,180,2,1,0,1,0,"Build · volume","build",2150],
+    [5.75,75,2,0,0,1,0,"Build · recovery","build",900],[11.25,150,2,2,0,1,0,"Build · threshold","build",1800],
+    [13.25,180,2,1,0,1,0,"Build · volume","build",2100],[9.25,120,2,0,1,1,2,"Snow · 10–15K race","snow",1500],
+    [6,75,2,0,0,1,2,"Snow · recovery","snow",950],[6.75,90,2,1,1,1,2,"Snow · intensity","snow",1100],
+    [13.25,180,2,1,0,1,2,"Snow · volume","snow",2100],[8,105,2,0,1,1,2,"Snow · 30–35K race","snow",1300],
+    [4.75,60,2,0,0,1,2,"Snow · recovery","snow",750],[9.75,135,2,1,0,1,2,"Snow · easy volume","snow",1550],
+    [9.25,120,2,1,1,1,2,"Snow · intensity","snow",1500],[7.25,90,2,0,1,1,2,"Peak · 20–25K race","peak",1150],
+    [6,75,2,0,0,1,2,"Taper","peak",950],[5,60,1,0,0,1,1,"Taper","peak",800],
+    [5.75,0,0,0,0,1,1,"Race week","peak",900]
   ];
 
   var PHASE={base:{c:"#2E7C55",n:"Base",a:1,b:7},build:{c:"#1D5C9E",n:"Build",a:8,b:19},
@@ -509,11 +509,11 @@
   };
 
   var HINT={
-    aer:"Anything conversational — run, spin, hilly walk, SkiErg, ski. 150–165 bpm.",
+    aer:"Rollerski first — skate and classic double-pole are the only dryland work that transfers directly. Then run, bike, hilly walk, SkiErg. Mostly conversational, 150–165 bpm.",
     vert:"Metres climbed. This page's own 5 m LIDAR measurement puts the race at 1,552 m over 50 km — 31 m/km average — so flat hours don't prepare you for it.",
     long:"Continuous, rolling, and back-load the climbing — the hardest section of the Birkie is the last one.",
     ski:"Days on snow. The number that decides this race.",
-    str:"Climbing counts. Add the 20-minute supplement lifts to one of them.",
+    str:"Two climbs a week. Add the 15–20 minute bodyweight circuit — pushups, squats, dips, side lunges, V-ups — to one of them.",
     thr:"Hill repeats, 4–8 minute efforts. 177–186 bpm, short phrases only.",
     vo2:"Short and sharp, 2–5 minutes. Snow or SkiErg.",
     spd:"4–6 × 20s strides after an easy run. Five minutes, not a workout."
