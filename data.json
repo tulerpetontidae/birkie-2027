@@ -1,8 +1,8 @@
 {
-  "stamp": "2026-08-02T21:13",
+  "stamp": "2026-08-02T21:40",
   "through": "2 Aug 2026",
   "weeks": {
-    "1": { "aer": 227, "vert": 577, "strength": 3, "ski": 0, "speed": 1, "long": 0, "cont": 0 }
+    "1": { "aer": 227, "vert": 577, "strength": 3, "ski": 0, "thr": 1, "vo2": 0, "speed": 1, "long": 0, "cont": 0 }
   },
   "acts": {
     "1": [
