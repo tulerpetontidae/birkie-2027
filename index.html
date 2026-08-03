@@ -111,8 +111,18 @@
   .bk-n{font-weight:600;font-size:15px}
   .bk-of{font-family:var(--mono);font-size:12px;color:var(--muted)}
   .bk-hint{font-size:12.5px;color:var(--muted);margin-top:7px;max-width:60ch}
-  .bk-bar{height:4px;background:var(--rule-2);border-radius:99px;overflow:hidden;margin-top:11px}
+  .bk-bar{position:relative;height:4px;background:var(--rule-2);border-radius:99px;overflow:hidden;margin-top:11px}
   .bk-fill{height:100%;width:0;border-radius:99px;transition:width .4s cubic-bezier(.4,0,.2,1)}
+
+  /* Past the week's target. Hatching reads as "off the plan" rather than as more progress —
+     the bar then measures the actual amount, with a tick where the target sat. */
+  .bk-bar-over{height:6px}
+  .bk-fill-over{position:absolute;top:0;bottom:0;right:0;
+    background:repeating-linear-gradient(135deg,#BF8511 0 3px,#EBD6A6 3px 6px)}
+  .bk-tick{position:absolute;top:0;bottom:0;width:2px;background:var(--paper)}
+  .bk-overtag{font-style:normal;font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;
+    text-transform:uppercase;color:#8A5E0B;background:#FAF3E4;border:1px solid #EBD6A6;
+    border-radius:2px;padding:1px 5px;margin-left:8px;white-space:nowrap}
 
   .bk-ctl{display:flex;align-items:center;gap:7px;flex-shrink:0}
   .bk-step{font-family:var(--mono);font-size:13px;height:33px;min-width:38px;padding:0 9px;border:1px solid var(--rule);background:var(--paper);border-radius:3px;cursor:pointer;color:var(--ink-2)}
@@ -123,6 +133,7 @@
   .bk-pip{width:30px;height:30px;border-radius:3px;border:1.5px solid var(--rule);background:var(--paper);cursor:pointer;padding:0;transition:transform .1s ease}
   .bk-pip:hover{transform:translateY(-1px)}
   .bk-pip[data-on="1"]{border-color:transparent}
+  .bk-pip[data-over="1"]{border-color:#BF8511;border-style:dashed}
   .bk-pip:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 
   .bk-chk{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;border:1.5px solid var(--rule);background:var(--paper);border-radius:3px;padding:7px 11px;cursor:pointer;color:var(--ink-2);white-space:nowrap}
@@ -957,15 +968,22 @@
     b.addEventListener("click",function(){ showTab(b.getAttribute("data-tab")); });
   });
 
+  var OVER_HATCH="repeating-linear-gradient(135deg,#BF8511 0 4px,#EBD6A6 4px 8px)";
+  function overBy(count,target){ return count>target?("over by "+(count-target)):null; }
   function pips(count,target,color,set){
     var d=document.createElement("div"); d.className="bk-pips";
-    for(var i=1;i<=target;i++)(function(i){
-      var b=document.createElement("button"); b.className="bk-pip";
-      b.setAttribute("data-on",i<=count?"1":"0");
-      b.setAttribute("aria-pressed",i<=count?"true":"false");
-      b.setAttribute("aria-label","Session "+i+" of "+target);
-      if(i<=count) b.style.background=color;
-      b.onclick=function(){ set(i<=count?i-1:i); };
+    /* render past the target when the week ran over, so the extra sessions are visible
+       (and still clickable to walk the count back down) */
+    for(var i=1;i<=Math.max(target,count);i++)(function(i){
+      var b=document.createElement("button"), on=i<=count, over=i>target;
+      b.className="bk-pip";
+      b.setAttribute("data-on",on?"1":"0");
+      b.setAttribute("aria-pressed",on?"true":"false");
+      b.setAttribute("aria-label",over?("Session "+i+" — past the target of "+target)
+                                      :("Session "+i+" of "+target));
+      if(on) b.style.background=over?OVER_HATCH:color;
+      if(over) b.style.borderColor="#BF8511";
+      b.onclick=function(){ set(on?i-1:i); };
       d.appendChild(b);
     })(i);
     return d;
@@ -981,14 +999,29 @@
     var r=document.createElement("div"); r.className="bk-row";
     var top=document.createElement("div"); top.className="bk-rtop";
     var nm=document.createElement("div"); nm.className="bk-rname";
-    nm.innerHTML='<span class="bk-dot" style="background:'+o.color+'"></span><span class="bk-n">'+o.name+'</span><span class="bk-of">'+o.of+'</span>';
+    nm.innerHTML='<span class="bk-dot" style="background:'+o.color+'"></span><span class="bk-n">'+o.name+'</span>'+
+                 '<span class="bk-of">'+o.of+(o.over?'<em class="bk-overtag">'+o.over+'</em>':'')+'</span>';
     top.appendChild(nm); top.appendChild(o.ctl); r.appendChild(top);
     var h=document.createElement("div"); h.className="bk-hint"; h.textContent=o.hint; r.appendChild(h);
     if(o.bar!=null){
       var b=document.createElement("div"); b.className="bk-bar";
       var f=document.createElement("div"); f.className="bk-fill";
-      f.style.background=o.color; f.style.width=Math.min(100,o.bar*100)+"%";
-      b.appendChild(f); r.appendChild(b);
+      f.style.background=o.color;
+      if(o.bar>1){
+        /* the whole track now measures the actual amount; the plan ended at the tick,
+           and everything past it is hatched so the excess can't read as progress */
+        var at=100/o.bar;
+        b.className="bk-bar bk-bar-over";
+        f.style.width=at+"%"; f.style.borderRadius="99px 0 0 99px";
+        var ov=document.createElement("div"); ov.className="bk-fill-over"; ov.style.left=at+"%";
+        var tk=document.createElement("div"); tk.className="bk-tick"; tk.style.left=at+"%";
+        b.appendChild(f); b.appendChild(ov); b.appendChild(tk);
+        b.title="Past the week's target — the tick marks the plan";
+      } else {
+        f.style.width=(o.bar*100)+"%";
+        b.appendChild(f);
+      }
+      r.appendChild(b);
     }
     return r;
   }
@@ -1010,7 +1043,8 @@
       b.onclick=function(){ e.aer=Math.max(0,e.aer+(+b.getAttribute("data-a"))); save(); render(); };
     });
     box.appendChild(row({name:"Aerobic",color:"#2E7C55",hint:HINT.aer,
-      of:(e.aer/60).toFixed(1)+" of "+p[0].toFixed(1)+" h",bar:e.aer/(p[0]*60),ctl:c1}));
+      of:(e.aer/60).toFixed(1)+" of "+p[0].toFixed(1)+" h",bar:e.aer/(p[0]*60),
+      over:e.aer>p[0]*60?"over by "+hm(e.aer-Math.round(p[0]*60)):null,ctl:c1}));
 
     var c2=document.createElement("div"); c2.className="bk-ctl";
     c2.innerHTML='<button class="bk-step" data-a="-100">–100</button><span class="bk-val">'+e.vert+' m'+
@@ -1019,7 +1053,8 @@
       b.onclick=function(){ e.vert=Math.max(0,e.vert+(+b.getAttribute("data-a"))); save(); render(); };
     });
     box.appendChild(row({name:"Vertical",color:"#BF8511",hint:HINT.vert,
-      of:e.vert+" of "+p[9]+" m",bar:e.vert/p[9],ctl:c2}));
+      of:e.vert+" of "+p[9]+" m",bar:e.vert/p[9],
+      over:e.vert>p[9]?"over by "+(e.vert-p[9])+" m":null,ctl:c2}));
 
     if(p[1]>0){
       var lg=document.createElement("div"); lg.className="bk-ctl";
@@ -1036,15 +1071,15 @@
       box.appendChild(row({name:"Long session",color:"#2E7C55",hint:HINT.long,of:"target "+hm(p[1]),bar:null,ctl:lg}));
     }
     if(p[6]>0) box.appendChild(row({name:"Days on snow",color:"#1D5C9E",hint:HINT.ski,
-      of:e.ski+" of "+p[6],bar:null,ctl:pips(e.ski,p[6],"#1D5C9E",function(v){ e.ski=v; save(); render(); })}));
+      of:e.ski+" of "+p[6],over:overBy(e.ski,p[6]),bar:null,ctl:pips(e.ski,p[6],"#1D5C9E",function(v){ e.ski=v; save(); render(); })}));
     if(p[2]>0) box.appendChild(row({name:"Strength",color:"#1D5C9E",hint:HINT.str,
-      of:e.strength+" of "+p[2],bar:null,ctl:pips(e.strength,p[2],"#1D5C9E",function(v){ e.strength=v; save(); render(); })}));
+      of:e.strength+" of "+p[2],over:overBy(e.strength,p[2]),bar:null,ctl:pips(e.strength,p[2],"#1D5C9E",function(v){ e.strength=v; save(); render(); })}));
     if(p[3]>0) box.appendChild(row({name:"Threshold",color:"#6B4B92",hint:HINT.thr,
-      of:e.thr+" of "+p[3],bar:null,ctl:pips(e.thr,p[3],"#6B4B92",function(v){ e.thr=v; save(); render(); })}));
+      of:e.thr+" of "+p[3],over:overBy(e.thr,p[3]),bar:null,ctl:pips(e.thr,p[3],"#6B4B92",function(v){ e.thr=v; save(); render(); })}));
     if(p[4]>0) box.appendChild(row({name:"VO₂ max",color:"#C23A2E",hint:HINT.vo2,
-      of:e.vo2+" of "+p[4],bar:null,ctl:pips(e.vo2,p[4],"#C23A2E",function(v){ e.vo2=v; save(); render(); })}));
+      of:e.vo2+" of "+p[4],over:overBy(e.vo2,p[4]),bar:null,ctl:pips(e.vo2,p[4],"#C23A2E",function(v){ e.vo2=v; save(); render(); })}));
     if(p[5]>0) box.appendChild(row({name:"Speed",color:"#BF8511",hint:HINT.spd,
-      of:e.speed+" of "+p[5],bar:null,ctl:pips(e.speed,p[5],"#BF8511",function(v){ e.speed=v; save(); render(); })}));
+      of:e.speed+" of "+p[5],over:overBy(e.speed,p[5]),bar:null,ctl:pips(e.speed,p[5],"#BF8511",function(v){ e.speed=v; save(); render(); })}));
 
     feed(); chart(); stats(); refreshExport();
   }
