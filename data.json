@@ -1,11 +1,12 @@
 {
-  "stamp": "2026-08-02T19:43",
+  "stamp": "2026-08-02T21:13",
   "through": "2 Aug 2026",
   "weeks": {
-    "1": { "aer": 186, "vert": 395, "strength": 3, "ski": 0, "speed": 1, "long": 0, "cont": 0 }
+    "1": { "aer": 227, "vert": 577, "strength": 3, "ski": 0, "speed": 1, "long": 0, "cont": 0 }
   },
   "acts": {
     "1": [
+      { "n": "Evening Run", "d": "Sun 2 Aug", "t": "41m · 5.2 km · 182 m · 164 bpm", "k": "aer" },
       { "n": "Dogpatch bouldering competition", "d": "Sun 2 Aug", "t": "2h 53m · effort 61", "k": "str" },
       { "n": "Lunch Run", "d": "Sat 1 Aug", "t": "38m · 5.7 km · 30 m · 159 bpm", "k": "aer" },
       { "n": "Evening Run", "d": "Fri 31 Jul", "t": "33m · 5.1 km · 34 m · 163 bpm · 4 × 20–30s strides", "k": "aer" },
