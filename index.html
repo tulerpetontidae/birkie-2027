@@ -124,21 +124,17 @@
     text-transform:uppercase;color:#8A5E0B;background:#FAF3E4;border:1px solid #EBD6A6;
     border-radius:2px;padding:1px 5px;margin-left:8px;white-space:nowrap}
 
+  /* read-only indicators — nothing in a week row is interactive */
   .bk-ctl{display:flex;align-items:center;gap:7px;flex-shrink:0}
-  .bk-step{font-family:var(--mono);font-size:13px;height:33px;min-width:38px;padding:0 9px;border:1px solid var(--rule);background:var(--paper);border-radius:3px;cursor:pointer;color:var(--ink-2)}
-  .bk-step:hover{background:var(--snow);border-color:var(--muted-d);color:var(--ink)}
-  .bk-val{font-family:var(--mono);font-size:15px;font-weight:500;min-width:66px;text-align:center}
+  .bk-val{font-family:var(--mono);font-size:15px;font-weight:500;min-width:66px;text-align:right}
 
   .bk-pips{display:flex;gap:5px}
-  .bk-pip{width:30px;height:30px;border-radius:3px;border:1.5px solid var(--rule);background:var(--paper);cursor:pointer;padding:0;transition:transform .1s ease}
-  .bk-pip:hover{transform:translateY(-1px)}
+  .bk-pip{width:26px;height:26px;border-radius:3px;border:1.5px solid var(--rule);background:var(--paper)}
   .bk-pip[data-on="1"]{border-color:transparent}
   .bk-pip[data-over="1"]{border-color:#BF8511;border-style:dashed}
-  .bk-pip:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 
-  .bk-chk{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;border:1.5px solid var(--rule);background:var(--paper);border-radius:3px;padding:7px 11px;cursor:pointer;color:var(--ink-2);white-space:nowrap}
-  .bk-chk:hover:not(:disabled){border-color:var(--muted-d)}
-  .bk-chk[data-on="1"]{border-color:currentColor;font-weight:600}
+  .bk-state{font-family:var(--mono);font-size:12.5px;color:var(--muted);white-space:nowrap}
+  .bk-state[data-on="1"]{font-weight:600}
 
   .bk-side{display:flex;flex-direction:column;gap:18px}
   .bk-shead{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);padding:15px 18px 0}
@@ -178,25 +174,11 @@
   .bk-hot{color:var(--red);font-weight:600}
   .bk-cool{color:var(--green)}
 
-  .bk-pub{margin-top:18px;padding:0 0 16px}
-  .bk-pubbody{padding:6px 18px 0}
-  .bk-pubbody p{font-size:12.5px;color:var(--muted);margin:0 0 12px;max-width:78ch}
-  .bk-pubrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
-  .bk-btn{font-family:var(--body);font-size:13px;font-weight:500;border:1.5px solid var(--ink);background:var(--ink);
-    color:#fff;border-radius:3px;padding:9px 15px;cursor:pointer}
-  .bk-btn:hover{background:#16242F}
-  .bk-btn.ghost{background:var(--paper);color:var(--ink-2);border-color:var(--rule)}
-  .bk-btn.ghost:hover{background:var(--snow);border-color:var(--muted-d);color:var(--ink)}
-  .bk-ok{font-family:var(--mono);font-size:11px;color:var(--green);opacity:0;transition:opacity .2s}
-  .bk-ok.on{opacity:1}
-  #bk-json{width:100%;height:150px;font-family:var(--mono);font-size:11px;line-height:1.5;color:var(--ink-2);
-    background:#F4F8FA;border:1px solid var(--rule);border-radius:3px;padding:11px;resize:vertical}
   .bk-foot{margin-top:20px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;
     font-size:12.5px;color:var(--muted);border-top:1px solid var(--rule);padding-top:14px}
   .bk-legend{display:flex;gap:15px;flex-wrap:wrap;align-items:center}
   .bk-lg{display:inline-flex;align-items:center;gap:6px;font-size:12px}
   .bk-lg i{width:8px;height:8px;border-radius:50%;display:inline-block}
-  .bk-reset{font-family:var(--mono);font-size:11px;color:var(--muted);background:none;border:0;cursor:pointer;text-decoration:underline;padding:0}
 
   @media (max-width:880px){ .bk-grid{grid-template-columns:1fr} }
   @media (max-width:560px){
@@ -207,7 +189,7 @@
     /* hero grows tall when content wraps — stretch the ranges so they don't read as a thin strip */
     .bk-heroart{height:132px}
   }
-  @media (prefers-reduced-motion:reduce){ .bk-fill,.bk-pip{transition:none} }
+  @media (prefers-reduced-motion:reduce){ .bk-fill{transition:none} }
 
   /* tabs */
   .bk-tabs{display:flex;gap:2px;margin-top:18px;border-bottom:1px solid var(--rule)}
@@ -336,21 +318,6 @@
     </div>
   </div>
 
-  <div class="bk-card bk-pub">
-    <div class="bk-shead">Publish</div>
-    <div class="bk-pubbody">
-      <p>Tick and adjust anything above, then copy this and paste it over <code>data.json</code> in your repo.
-         Commit, and it's live for everyone in about a minute. You don't need me for this — only for pulling
-         fresh activities out of Strava.</p>
-      <div class="bk-pubrow">
-        <button class="bk-btn" id="bk-copy">Copy data.json</button>
-        <button class="bk-btn ghost" id="bk-dl">Download file</button>
-        <span class="bk-ok" id="bk-ok">copied</span>
-      </div>
-      <textarea id="bk-json" readonly spellcheck="false" aria-label="data.json contents"></textarea>
-    </div>
-  </div>
-
   <div class="bk-foot">
     <div class="bk-legend">
       <span style="color:var(--ink-2)">Waxed cold to warm, easy to hard:</span>
@@ -360,7 +327,6 @@
       <span class="bk-lg"><i style="background:var(--violet)"></i>Threshold</span>
       <span class="bk-lg"><i style="background:var(--red)"></i>VO₂ max</span>
     </div>
-    <button class="bk-reset" id="bk-reset">Clear everything logged</button>
   </div>
 
   </div><!-- /bk-tab-prep -->
@@ -462,7 +428,7 @@
 (function(){
   "use strict";
 
-  var RACE=new Date(2027,1,27), W1=new Date(2026,6,27), KEY="birkie-log-site-v1";
+  var RACE=new Date(2027,1,27), W1=new Date(2026,6,27);
 
   /* aerobicH, longMin, strength, thr, vo2, speed, ski, label, phase, vertM */
   var PLAN=[
@@ -553,18 +519,12 @@
     spd:"4–6 × 20s strides after an easy run. Five minutes, not a workout."
   };
 
-  var log={}, cur=1, timer=null, mem=false;
+  var log={}, cur=1;
 
-  /* Local tweaks live in this browser only. data.json is the shared source of truth. */
-  function save(){ clearTimeout(timer); timer=setTimeout(function(){
-    if(mem) return;
-    try{ localStorage.setItem(KEY,JSON.stringify(log)); }catch(e){ mem=true; }
-  },300); }
-  function load(){
-    try{ var v=localStorage.getItem(KEY); if(v) log=JSON.parse(v)||{}; }catch(e){ mem=true; }
-    return Promise.resolve();
-  }
-  /* data.json overrides the inline fallback when the site is hosted */
+  /* data.json is the only source of truth — this view is read-only, with the inline
+     SYNC object as the fallback when the page is opened straight off disk. */
+  /* drop the log the editable version used to keep, so no stale local state survives */
+  try{ localStorage.removeItem("birkie-log-site-v1"); }catch(e){}
   function fetchData(){
     return fetch("data.json?t="+Date.now())
       .then(function(r){ if(!r.ok) throw 0; return r.json(); })
@@ -573,19 +533,16 @@
   }
   function ent(n){
     if(!log[n]) log[n]={aer:0,vert:0,strength:0,thr:0,vo2:0,speed:0,ski:0,long:0,cont:0};
-    if(log[n].vert===undefined) log[n].vert=0;
     return log[n];
   }
-  function merge(){
-    if(log.__sync===SYNC.stamp) return;
+  function build(){
+    log={};
     for(var w in SYNC.weeks){
       var s=SYNC.weeks[w], e=ent(+w);
-      ["aer","vert","strength","ski","thr","vo2","speed"].forEach(function(k){
-        if(s[k]!==undefined) e[k]=Math.max(e[k]||0,s[k]);
+      ["aer","vert","strength","ski","thr","vo2","speed","long","cont"].forEach(function(k){
+        if(s[k]!==undefined) e[k]=s[k];
       });
-      if(s.long) e.long=1; if(s.cont) e.cont=1;
     }
-    log.__sync=SYNC.stamp; save();
   }
   function wkStart(n){ var d=new Date(W1); d.setDate(d.getDate()+(n-1)*7); return d; }
   function range(n){
@@ -605,15 +562,6 @@
     if(p[3]+p[4]>0) add((e.thr+e.vo2)/(p[3]+p[4]),10);
     if(p[5]>0) add(e.speed/p[5],4);
     return t? s/t : 0;
-  }
-  function hasLocalEdits(){
-    for(var i=1;i<=31;i++){
-      var e=log[i]; if(!e) continue;
-      var b=(SYNC.weeks&&SYNC.weeks[i])||{};
-      var ks=["aer","vert","strength","ski","thr","vo2","speed","long","cont"];
-      for(var j=0;j<ks.length;j++) if((e[ks[j]]||0)>(b[ks[j]]||0)) return true;
-    }
-    return false;
   }
   function hm(m){ return Math.floor(m/60)+"h "+(m%60<10?"0":"")+(m%60)+"m"; }
 
@@ -970,29 +918,26 @@
 
   var OVER_HATCH="repeating-linear-gradient(135deg,#BF8511 0 4px,#EBD6A6 4px 8px)";
   function overBy(count,target){ return count>target?("over by "+(count-target)):null; }
-  function pips(count,target,color,set){
+  /* read-only indicators — the count comes from data.json, nothing here is clickable */
+  function pips(count,target,color){
     var d=document.createElement("div"); d.className="bk-pips";
-    /* render past the target when the week ran over, so the extra sessions are visible
-       (and still clickable to walk the count back down) */
-    for(var i=1;i<=Math.max(target,count);i++)(function(i){
-      var b=document.createElement("button"), on=i<=count, over=i>target;
+    d.setAttribute("role","img");
+    d.setAttribute("aria-label",count+" of "+target+(count>target?" — past target":""));
+    /* draw past the target when the week ran over, so the extra sessions stay visible */
+    for(var i=1;i<=Math.max(target,count);i++){
+      var b=document.createElement("div"), on=i<=count, over=i>target;
       b.className="bk-pip";
       b.setAttribute("data-on",on?"1":"0");
-      b.setAttribute("aria-pressed",on?"true":"false");
-      b.setAttribute("aria-label",over?("Session "+i+" — past the target of "+target)
-                                      :("Session "+i+" of "+target));
       if(on) b.style.background=over?OVER_HATCH:color;
       if(over) b.style.borderColor="#BF8511";
-      b.onclick=function(){ set(on?i-1:i); };
       d.appendChild(b);
-    })(i);
+    }
     return d;
   }
-  function steps(vals,label,fn){
+  /* the measured rows just print their value */
+  function readout(text){
     var d=document.createElement("div"); d.className="bk-ctl";
-    d.innerHTML=vals.map(function(v){
-      return '<button class="bk-step" data-a="'+v[0]+'" aria-label="'+v[1]+' '+label+'">'+v[1]+'</button>';
-    }).join("");
+    d.innerHTML='<span class="bk-val">'+text+'</span>';
     return d;
   }
   function row(o){
@@ -1036,52 +981,35 @@
 
     var box=document.getElementById("bk-rows"); box.innerHTML="";
 
-    var c1=document.createElement("div"); c1.className="bk-ctl";
-    c1.innerHTML='<button class="bk-step" data-a="-15">–15</button><span class="bk-val">'+hm(e.aer)+
-                 '</span><button class="bk-step" data-a="15">+15</button><button class="bk-step" data-a="45">+45</button>';
-    Array.prototype.forEach.call(c1.querySelectorAll("button"),function(b){
-      b.onclick=function(){ e.aer=Math.max(0,e.aer+(+b.getAttribute("data-a"))); save(); render(); };
-    });
     box.appendChild(row({name:"Aerobic",color:"#2E7C55",hint:HINT.aer,
       of:(e.aer/60).toFixed(1)+" of "+p[0].toFixed(1)+" h",bar:e.aer/(p[0]*60),
-      over:e.aer>p[0]*60?"over by "+hm(e.aer-Math.round(p[0]*60)):null,ctl:c1}));
+      over:e.aer>p[0]*60?"over by "+hm(e.aer-Math.round(p[0]*60)):null,ctl:readout(hm(e.aer))}));
 
-    var c2=document.createElement("div"); c2.className="bk-ctl";
-    c2.innerHTML='<button class="bk-step" data-a="-100">–100</button><span class="bk-val">'+e.vert+' m'+
-                 '</span><button class="bk-step" data-a="100">+100</button><button class="bk-step" data-a="250">+250</button>';
-    Array.prototype.forEach.call(c2.querySelectorAll("button"),function(b){
-      b.onclick=function(){ e.vert=Math.max(0,e.vert+(+b.getAttribute("data-a"))); save(); render(); };
-    });
     box.appendChild(row({name:"Vertical",color:"#BF8511",hint:HINT.vert,
       of:e.vert+" of "+p[9]+" m",bar:e.vert/p[9],
-      over:e.vert>p[9]?"over by "+(e.vert-p[9])+" m":null,ctl:c2}));
+      over:e.vert>p[9]?"over by "+(e.vert-p[9])+" m":null,ctl:readout(e.vert+" m")}));
 
     if(p[1]>0){
       var lg=document.createElement("div"); lg.className="bk-ctl";
-      var b1=document.createElement("button"); b1.className="bk-chk";
-      b1.setAttribute("data-on",e.long?"1":"0"); if(e.long) b1.style.color="#2E7C55";
-      b1.textContent=e.long?"✓ Done":"Mark done";
-      b1.onclick=function(){ e.long=e.long?0:1; if(!e.long) e.cont=0; save(); render(); };
-      var b2=document.createElement("button"); b2.className="bk-chk";
-      b2.setAttribute("data-on",e.cont?"1":"0"); if(e.cont) b2.style.color="#6B4B92";
-      b2.textContent=e.cont?"✓ Continuous":"Continuous?";
-      b2.disabled=!e.long; b2.style.opacity=e.long?1:.38;
-      b2.onclick=function(){ if(e.long){ e.cont=e.cont?0:1; save(); render(); } };
-      lg.appendChild(b1); lg.appendChild(b2);
+      var st=document.createElement("span"); st.className="bk-state";
+      st.setAttribute("data-on",e.long?"1":"0");
+      st.textContent=e.long?(e.cont?"✓ Done · continuous":"✓ Done"):"Not yet";
+      if(e.long) st.style.color=e.cont?"#6B4B92":"#2E7C55";
+      lg.appendChild(st);
       box.appendChild(row({name:"Long session",color:"#2E7C55",hint:HINT.long,of:"target "+hm(p[1]),bar:null,ctl:lg}));
     }
     if(p[6]>0) box.appendChild(row({name:"Days on snow",color:"#1D5C9E",hint:HINT.ski,
-      of:e.ski+" of "+p[6],over:overBy(e.ski,p[6]),bar:null,ctl:pips(e.ski,p[6],"#1D5C9E",function(v){ e.ski=v; save(); render(); })}));
+      of:e.ski+" of "+p[6],over:overBy(e.ski,p[6]),bar:null,ctl:pips(e.ski,p[6],"#1D5C9E")}));
     if(p[2]>0) box.appendChild(row({name:"Strength",color:"#1D5C9E",hint:HINT.str,
-      of:e.strength+" of "+p[2],over:overBy(e.strength,p[2]),bar:null,ctl:pips(e.strength,p[2],"#1D5C9E",function(v){ e.strength=v; save(); render(); })}));
+      of:e.strength+" of "+p[2],over:overBy(e.strength,p[2]),bar:null,ctl:pips(e.strength,p[2],"#1D5C9E")}));
     if(p[3]>0) box.appendChild(row({name:"Threshold",color:"#6B4B92",hint:HINT.thr,
-      of:e.thr+" of "+p[3],over:overBy(e.thr,p[3]),bar:null,ctl:pips(e.thr,p[3],"#6B4B92",function(v){ e.thr=v; save(); render(); })}));
+      of:e.thr+" of "+p[3],over:overBy(e.thr,p[3]),bar:null,ctl:pips(e.thr,p[3],"#6B4B92")}));
     if(p[4]>0) box.appendChild(row({name:"VO₂ max",color:"#C23A2E",hint:HINT.vo2,
-      of:e.vo2+" of "+p[4],over:overBy(e.vo2,p[4]),bar:null,ctl:pips(e.vo2,p[4],"#C23A2E",function(v){ e.vo2=v; save(); render(); })}));
+      of:e.vo2+" of "+p[4],over:overBy(e.vo2,p[4]),bar:null,ctl:pips(e.vo2,p[4],"#C23A2E")}));
     if(p[5]>0) box.appendChild(row({name:"Speed",color:"#BF8511",hint:HINT.spd,
-      of:e.speed+" of "+p[5],over:overBy(e.speed,p[5]),bar:null,ctl:pips(e.speed,p[5],"#BF8511",function(v){ e.speed=v; save(); render(); })}));
+      of:e.speed+" of "+p[5],over:overBy(e.speed,p[5]),bar:null,ctl:pips(e.speed,p[5],"#BF8511")}));
 
-    feed(); chart(); stats(); refreshExport();
+    feed(); chart(); stats();
   }
 
   function feed(){
@@ -1115,53 +1043,19 @@
       '<div class="bk-stat"><b>'+hit+'</b><span>weeks fully hit</span><em>of 31</em></div>'+
       '<div class="bk-stat"><b>'+(ct?Math.round(cd/ct*100):0)+'%</b><span>long sessions continuous</span><em>'+cd+' of '+ct+'</em></div>'+
       '<div class="bk-stat"><b>'+(vert?Math.round(vert/(aer/60||1)):0)+'</b><span>m climbed per hour</span><em>race is ~317</em></div>';
-    var note='<b>✓ Synced from Strava</b> through '+SYNC.through+'.<br>'+
+    document.getElementById("bk-syncnote").innerHTML=
+      '<b>✓ Synced from Strava</b> through '+SYNC.through+'.<br>'+
       'Runs, rides, hikes and walks fill aerobic time and vertical. Climbs fill strength.<br>'+
-      'This is the public view — everyone sees what is in data.json.';
-    if(hasLocalEdits()) note+='<br><span style="color:#BF8511">● You have local ticks that visitors cannot see. '+
-      'Ask for a sync to publish them.</span>';
-    document.getElementById("bk-syncnote").innerHTML=note;
+      'Read-only — every figure here comes from data.json.';
   }
 
-  function today(){
-    var M=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"], d=new Date();
-    return d.getDate()+" "+M[d.getMonth()]+" "+d.getFullYear();
-  }
-  function exportJSON(){
-    var out={stamp:new Date().toISOString().slice(0,16),through:today(),weeks:{},acts:(SYNC&&SYNC.acts)||{}};
-    var ks=["aer","vert","strength","thr","vo2","speed","ski","long","cont"];
-    for(var i=1;i<=31;i++){
-      var e=log[i]; if(!e) continue;
-      var o={},any=false;
-      for(var j=0;j<ks.length;j++){ if(e[ks[j]]){ o[ks[j]]=e[ks[j]]; any=true; } }
-      if(any) out.weeks[i]=o;
-    }
-    return JSON.stringify(out,null,2);
-  }
-  function refreshExport(){
-    var t=document.getElementById("bk-json"); if(t) t.value=exportJSON();
-  }
-  document.getElementById("bk-copy").onclick=function(){
-    var t=document.getElementById("bk-json"), ok=document.getElementById("bk-ok");
-    t.select(); t.setSelectionRange(0,999999);
-    var done=function(){ ok.classList.add("on"); setTimeout(function(){ ok.classList.remove("on"); },1600); };
-    if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(t.value).then(done).catch(function(){ try{document.execCommand("copy");done();}catch(e){} });
-    } else { try{ document.execCommand("copy"); done(); }catch(e){} }
-  };
-  document.getElementById("bk-dl").onclick=function(){
-    var b=new Blob([exportJSON()],{type:"application/json"}), u=URL.createObjectURL(b);
-    var a=document.createElement("a"); a.href=u; a.download="data.json"; a.click();
-    setTimeout(function(){ URL.revokeObjectURL(u); },1000);
-  };
   document.getElementById("bk-prev").onclick=function(){ if(cur>1){ cur--; render(); } };
   document.getElementById("bk-next").onclick=function(){ if(cur<31){ cur++; render(); } };
   document.getElementById("bk-todaybtn").onclick=function(){ cur=nowWeek(); render(); };
-  document.getElementById("bk-reset").onclick=function(){ log={}; merge(); save(); render(); };
 
   phases(); courseChart(); buildSegs();
   showTab(location.hash==="#course"?"course":"prep");
-  fetchData().then(load).then(function(){ merge(); cur=nowWeek(); render(); });
+  fetchData().then(function(){ build(); cur=nowWeek(); render(); });
 })();
 </script>
 
