@@ -1,10 +1,14 @@
 {
-  "stamp": "2026-08-02T21:40",
-  "through": "2 Aug 2026",
+  "stamp": "2026-08-03T21:05",
+  "through": "3 Aug 2026",
   "weeks": {
-    "1": { "aer": 227, "vert": 577, "strength": 3, "ski": 0, "thr": 1, "vo2": 0, "speed": 1, "long": 0, "cont": 0 }
+    "1": { "aer": 227, "vert": 577, "strength": 3, "ski": 0, "thr": 1, "vo2": 0, "speed": 1, "long": 0, "cont": 0 },
+    "2": { "aer": 33, "vert": 21, "strength": 0, "ski": 0, "thr": 0, "vo2": 0, "speed": 0, "long": 0, "cont": 0 }
   },
   "acts": {
+    "2": [
+      { "n": "Evening Run", "d": "Mon 3 Aug", "t": "33m · 3.8 km · 21 m · 132 bpm · recovery", "k": "aer" }
+    ],
     "1": [
       { "n": "Evening Run", "d": "Sun 2 Aug", "t": "41m · 5.2 km · 182 m · 164 bpm", "k": "aer" },
       { "n": "Dogpatch bouldering competition", "d": "Sun 2 Aug", "t": "2h 53m · effort 61", "k": "str" },
