@@ -274,7 +274,9 @@
     <div class="bk-cap">
       <div>
         <h2>The season, drawn as a course profile</h2>
-        <p>Height is the planned load for that week. The solid fill is what you actually banked. Tap a week to open it.</p>
+        <p>Height is the planned load for that week. The fill is how much of that week you completed —
+           every row counts, and no row can score past 100%, so extra hours don't cover a missed session.
+           Tap a week to open it.</p>
       </div>
       <div class="bk-banked"><b id="bk-banked">0%</b>banked</div>
     </div>
@@ -578,7 +580,9 @@
 
   function chart(){
     var svg=document.getElementById("bk-chart");
-    var W=960,H=168,PB=20,PT=10,n=31,bw=W/n,MAX=9.5;
+    var W=960,H=168,PB=20,PT=10,n=31,bw=W/n;
+    /* scale to the plan, not a fixed ceiling — peak weeks otherwise draw off the top */
+    var MAX=Math.max.apply(null,PLAN.map(function(p){ return p[0]; }))*1.08;
     var y=function(h){ return PT+(H-PB-PT)*(1-h/MAX); };
     var s='<defs><linearGradient id="bkg" x1="0" y1="0" x2="0" y2="1">'+
           '<stop offset="0%" stop-color="#2E7C55" stop-opacity=".16"/>'+
@@ -621,7 +625,13 @@
       r.addEventListener("keydown",function(ev){ if(ev.key==="Enter"||ev.key===" "){ ev.preventDefault(); pick(); } });
       r.addEventListener("mouseenter",function(){
         var p=PLAN[w-1];
-        tip.innerHTML='<b>Week '+w+'</b> <i>· '+p[7]+'</i><br>'+p[0].toFixed(1)+' h · '+p[9]+' m climb · '+Math.round(pct(w)*100)+'% banked';
+        /* actual against planned — the bar is completeness, so overshooting one row
+           does not fill the bar if another row is short */
+        var we=ent(w);
+        tip.innerHTML='<b>Week '+w+'</b> <i>· '+p[7]+'</i><br>'+
+          (we.aer/60).toFixed(1)+' of '+p[0].toFixed(1)+' h · '+
+          we.vert+' of '+p[9]+' m climb<br>'+
+          Math.round(pct(w)*100)+'% of the week completed';
         tip.style.left=((w-0.5)/31*100)+"%"; tip.style.top="-6px"; tip.style.opacity="1";
       });
       r.addEventListener("mouseleave",function(){ tip.style.opacity="0"; });
