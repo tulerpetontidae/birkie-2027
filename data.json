@@ -1,12 +1,18 @@
 {
-  "stamp": "2026-08-03T21:05",
-  "through": "3 Aug 2026",
+  "stamp": "2026-08-10T09:47",
+  "through": "10 Aug 2026",
   "weeks": {
     "1": { "aer": 227, "vert": 577, "strength": 3, "ski": 0, "thr": 1, "vo2": 0, "speed": 1, "long": 0, "cont": 0 },
-    "2": { "aer": 33, "vert": 21, "strength": 0, "ski": 0, "thr": 0, "vo2": 0, "speed": 0, "long": 0, "cont": 0 }
+    "2": { "aer": 666, "vert": 1200, "strength": 1, "ski": 0, "thr": 0, "vo2": 0, "speed": 1, "long": 1, "cont": 1 }
   },
   "acts": {
     "2": [
+      { "n": "Lunch Hike", "d": "Sun 9 Aug", "t": "1h 38m · 5.3 km · 289 m · 123 bpm · poles", "k": "aer" },
+      { "n": "Afternoon Trail Run", "d": "Sat 8 Aug", "t": "5h 43m · 25.4 km · 592 m · 160 bpm · continuous", "k": "aer" },
+      { "n": "Lunch Hike", "d": "Sat 8 Aug", "t": "1h 6m · 4.2 km · 74 m · 128 bpm · poles", "k": "aer" },
+      { "n": "Morning Hike", "d": "Sat 8 Aug", "t": "1h 16m · 4.7 km · 155 m · 120 bpm · poles", "k": "aer" },
+      { "n": "Afternoon Run", "d": "Fri 7 Aug", "t": "50m · 6.5 km · 69 m · 164 bpm · accelerations", "k": "aer" },
+      { "n": "Evening Rock Climb", "d": "Wed 5 Aug", "t": "1h 34m · effort 49", "k": "str" },
       { "n": "Evening Run", "d": "Mon 3 Aug", "t": "33m · 3.8 km · 21 m · 132 bpm · recovery", "k": "aer" }
     ],
     "1": [
