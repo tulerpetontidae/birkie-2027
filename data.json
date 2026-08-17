@@ -1,13 +1,16 @@
 {
-  "stamp": "2026-08-14T13:08",
-  "through": "14 Aug 2026",
+  "stamp": "2026-08-16T17:23",
+  "through": "16 Aug 2026",
   "weeks": {
     "1": { "aer": 227, "vert": 577, "strength": 3, "ski": 0, "thr": 1, "vo2": 0, "speed": 1, "long": 0, "cont": 0 },
     "2": { "aer": 666, "vert": 1200, "strength": 1, "ski": 0, "thr": 0, "vo2": 0, "speed": 1, "long": 1, "cont": 1 },
-    "3": { "aer": 81, "vert": 85, "strength": 2, "ski": 0, "thr": 1, "vo2": 0, "speed": 0, "long": 0, "cont": 0 }
+    "3": { "aer": 136, "vert": 255, "strength": 3, "ski": 0, "thr": 1, "vo2": 0, "speed": 0, "long": 0, "cont": 0 }
   },
   "acts": {
     "3": [
+      { "n": "Afternoon Rock Climb in a movie theater", "d": "Sun 16 Aug", "t": "1h 19m · effort 46", "k": "str" },
+      { "n": "Berkeley orienteering", "d": "Sun 16 Aug", "t": "55m · 7.8 km · 170 m · 162 bpm", "k": "aer" },
+      { "n": "Afternoon Sail", "d": "Fri 14 Aug", "t": "3h 2m · effort 23 · not counted", "k": "skip" },
       { "n": "Lunch Run", "d": "Fri 14 Aug", "t": "47m · 5.0 km · 27 m · 136 bpm · easy", "k": "aer" },
       { "n": "Evening Run", "d": "Thu 13 Aug", "t": "34m · 5.8 km · 58 m · 171 bpm · 19m at threshold", "k": "aer" },
       { "n": "Morning Rock Climb", "d": "Wed 12 Aug", "t": "2h 4m · effort 60", "k": "str" },
