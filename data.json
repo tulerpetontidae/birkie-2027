@@ -1,12 +1,16 @@
 {
-  "stamp": "2026-08-16T17:23",
-  "through": "16 Aug 2026",
+  "stamp": "2026-08-18T20:43",
+  "through": "18 Aug 2026",
   "weeks": {
     "1": { "aer": 227, "vert": 577, "strength": 3, "ski": 0, "thr": 1, "vo2": 0, "speed": 1, "long": 0, "cont": 0 },
     "2": { "aer": 666, "vert": 1200, "strength": 1, "ski": 0, "thr": 0, "vo2": 0, "speed": 1, "long": 1, "cont": 1 },
-    "3": { "aer": 136, "vert": 255, "strength": 3, "ski": 0, "thr": 1, "vo2": 0, "speed": 0, "long": 0, "cont": 0 }
+    "3": { "aer": 136, "vert": 255, "strength": 3, "ski": 0, "thr": 1, "vo2": 0, "speed": 0, "long": 0, "cont": 0 },
+    "4": { "aer": 93, "vert": 75, "strength": 0, "ski": 0, "thr": 1, "vo2": 1, "speed": 0, "long": 0, "cont": 0 }
   },
   "acts": {
+    "4": [
+      { "n": "Evening Run", "d": "Tue 18 Aug", "t": "1h 33m · 16.5 km · 75 m · 178 bpm · 5m in zone 5", "k": "aer" }
+    ],
     "3": [
       { "n": "Afternoon Rock Climb in a movie theater", "d": "Sun 16 Aug", "t": "1h 19m · effort 46", "k": "str" },
       { "n": "Berkeley orienteering", "d": "Sun 16 Aug", "t": "55m · 7.8 km · 170 m · 162 bpm", "k": "aer" },
