@@ -1025,7 +1025,7 @@
   function feed(){
     var el=document.getElementById("bk-feed"), a=SYNC.acts[cur];
     var C={aer:"#2E7C55",str:"#1D5C9E",ski:"#6B4B92",skip:"#CCD9E1"};
-    if(!a||!a.length){ el.innerHTML='<div class="bk-empty">Nothing synced for this week yet. Anything you log by hand stays put.</div>'; return; }
+    if(!a||!a.length){ el.innerHTML='<div class="bk-empty">Nothing synced for this week yet.</div>'; return; }
     el.innerHTML=a.map(function(x){
       return '<div class="bk-act"><i style="background:'+(C[x.k]||"#7A8B96")+'"></i><div><b>'+x.n+'</b><span>'+x.d+' · '+x.t+'</span></div></div>';
     }).join("");
