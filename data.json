@@ -1,15 +1,28 @@
 {
-  "stamp": "2026-09-08T11:40",
-  "through": "1 Sep 2026",
+  "stamp": "2026-09-26T23:09",
+  "through": "26 Sep 2026",
   "weeks": {
     "1": { "aer": 227, "vert": 577, "strength": 3, "ski": 0, "thr": 1, "vo2": 0, "speed": 1, "long": 0, "cont": 0 },
     "2": { "aer": 666, "vert": 1200, "strength": 1, "ski": 0, "thr": 0, "vo2": 0, "speed": 1, "long": 1, "cont": 1 },
     "3": { "aer": 136, "vert": 255, "strength": 3, "ski": 0, "thr": 1, "vo2": 0, "speed": 0, "long": 0, "cont": 0 },
     "4": { "aer": 245, "vert": 644, "strength": 2, "ski": 0, "thr": 1, "vo2": 1, "speed": 0, "long": 0, "cont": 0 },
     "5": { "aer": 125, "vert": 576, "strength": 2, "ski": 0, "thr": 1, "vo2": 0, "speed": 0, "long": 0, "cont": 0 },
-    "6": { "aer": 82, "vert": 150, "strength": 0, "ski": 0, "thr": 0, "vo2": 0, "speed": 0, "long": 0, "cont": 0 }
+    "6": { "aer": 82, "vert": 150, "strength": 0, "ski": 0, "thr": 0, "vo2": 0, "speed": 0, "long": 0, "cont": 0 },
+    "7": { "aer": 0, "vert": 0, "strength": 1, "ski": 0, "thr": 0, "vo2": 0, "speed": 0, "long": 0, "cont": 0 },
+    "8": { "aer": 0, "vert": 0, "strength": 1, "ski": 0, "thr": 0, "vo2": 0, "speed": 0, "long": 0, "cont": 0 },
+    "9": { "aer": 1599, "vert": 2399, "strength": 1, "ski": 0, "thr": 0, "vo2": 0, "speed": 0, "long": 1, "cont": 1 }
   },
   "acts": {
+    "9": [
+      { "n": "4 days and 10 lakes", "d": "Wed 23 \u2013 Sat 26 Sep", "t": "26h 39m on trail \u00b7 66.2 km \u00b7 2,399 m \u00b7 134 bpm \u00b7 14\u201316 kg pack", "k": "aer" },
+      { "n": "Afternoon Rock Climb", "d": "Mon 21 Sep", "t": "47m \u00b7 effort 14", "k": "str" }
+    ],
+    "8": [
+      { "n": "Evening Rock Climb", "d": "Wed 16 Sep", "t": "1h 47m \u00b7 effort 60", "k": "str" }
+    ],
+    "7": [
+      { "n": "Evening Rock Climb", "d": "Fri 11 Sep", "t": "1h 55m \u00b7 effort 65", "k": "str" }
+    ],
     "6": [
       { "n": "Circumnavigating BRC", "d": "Tue 1 Sep", "t": "1h 22m \u00b7 12.2 km \u00b7 150 m \u00b7 165 bpm \u00b7 5m above 177", "k": "aer" }
     ],
