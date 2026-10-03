@@ -1,5 +1,5 @@
 {
-  "stamp": "2026-10-02T16:20",
+  "stamp": "2026-10-03T04:21",
   "through": "2 Oct 2026",
   "weeks": {
     "1": { "aer": 227, "vert": 577, "strength": 3, "ski": 0, "thr": 1, "vo2": 0, "speed": 1, "long": 0, "cont": 0 },
@@ -11,10 +11,11 @@
     "7": { "aer": 0, "vert": 0, "strength": 1, "ski": 0, "thr": 0, "vo2": 0, "speed": 0, "long": 0, "cont": 0 },
     "8": { "aer": 0, "vert": 0, "strength": 1, "ski": 0, "thr": 0, "vo2": 0, "speed": 0, "long": 0, "cont": 0 },
     "9": { "aer": 1599, "vert": 2399, "strength": 1, "ski": 0, "thr": 0, "vo2": 0, "speed": 0, "long": 1, "cont": 1 },
-    "10": { "aer": 77, "vert": 206, "strength": 1, "ski": 0, "thr": 0, "vo2": 1, "speed": 0, "long": 1, "cont": 1 }
+    "10": { "aer": 77, "vert": 206, "strength": 2, "ski": 0, "thr": 0, "vo2": 1, "speed": 0, "long": 1, "cont": 1 }
   },
   "acts": {
     "10": [
+      { "n": "Second V6!", "d": "Fri 2 Oct", "t": "1h 49m \u00b7 effort 61 \u00b7 second V6 ever", "k": "str" },
       { "n": "Lunch Run", "d": "Fri 2 Oct", "t": "1h 17m \u00b7 12.9 km \u00b7 206 m \u00b7 170 bpm \u00b7 4 VO\u2082 hills, 1.5\u20134 min, peaks 189\u2013192", "k": "aer" },
       { "n": "Evening Rock Climb", "d": "Wed 30 Sep", "t": "1h 32m \u00b7 effort 59", "k": "str" }
     ],
