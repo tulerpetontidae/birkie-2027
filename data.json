@@ -12,13 +12,13 @@
     "8": { "aer": 0, "vert": 0, "strength": 1, "ski": 0, "thr": 0, "vo2": 0, "speed": 0, "long": 0, "cont": 0 },
     "9": { "aer": 1599, "vert": 2399, "strength": 1, "ski": 0, "thr": 0, "vo2": 0, "speed": 0, "long": 1, "cont": 1 },
     "10": { "aer": 77, "vert": 206, "strength": 2, "ski": 0, "thr": 0, "vo2": 1, "speed": 0, "long": 1, "cont": 1 },
-    "11": { "aer": 36, "vert": 166, "strength": 1, "ski": 0, "thr": 1, "vo2": 0, "speed": 0, "long": 0, "cont": 0 }
+    "11": { "aer": 36, "vert": 166, "strength": 1, "ski": 0, "thr": 1, "vo2": 1, "speed": 0, "long": 0, "cont": 0 }
   },
   "acts": {
     "11": [
       { "n": "Night Run", "d": "Mon 5 Oct", "t": "18m \u00b7 3.0 km \u00b7 82 m \u00b7 178 bpm \u00b7 4.8m block above 177", "k": "aer" },
       { "n": "Evening Rock Climb", "d": "Mon 5 Oct", "t": "1h 20m \u00b7 effort 36 \u00b7 top rope", "k": "str" },
-      { "n": "Evening Run", "d": "Mon 5 Oct", "t": "18m \u00b7 3.0 km \u00b7 84 m \u00b7 172 bpm \u00b7 4.1m block above 177", "k": "aer" }
+      { "n": "Evening Run", "d": "Mon 5 Oct", "t": "18m \u00b7 3.0 km \u00b7 84 m \u00b7 172 bpm \u00b7 4m threshold, then the hill to 198", "k": "aer" }
     ],
     "10": [
       { "n": "Second V6!", "d": "Fri 2 Oct", "t": "1h 49m \u00b7 effort 61 \u00b7 second V6 ever", "k": "str" },
