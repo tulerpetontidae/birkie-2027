@@ -1,6 +1,6 @@
 {
-  "stamp": "2026-10-11T08:48",
-  "through": "10 Oct 2026",
+  "stamp": "2026-10-12T21:30",
+  "through": "12 Oct 2026",
   "weeks": {
     "1": { "aer": 227, "vert": 577, "strength": 3, "ski": 0, "thr": 1, "vo2": 0, "speed": 1, "long": 0, "cont": 0 },
     "2": { "aer": 666, "vert": 1200, "strength": 1, "ski": 0, "thr": 0, "vo2": 0, "speed": 1, "long": 1, "cont": 1 },
@@ -12,9 +12,13 @@
     "8": { "aer": 0, "vert": 0, "strength": 1, "ski": 0, "thr": 0, "vo2": 0, "speed": 0, "long": 0, "cont": 0 },
     "9": { "aer": 1599, "vert": 2399, "strength": 1, "ski": 0, "thr": 0, "vo2": 0, "speed": 0, "long": 1, "cont": 1 },
     "10": { "aer": 77, "vert": 206, "strength": 2, "ski": 0, "thr": 0, "vo2": 1, "speed": 0, "long": 1, "cont": 1 },
-    "11": { "aer": 206, "vert": 719, "strength": 2, "ski": 0, "thr": 1, "vo2": 2, "speed": 0, "long": 1, "cont": 1 }
+    "11": { "aer": 206, "vert": 719, "strength": 2, "ski": 0, "thr": 1, "vo2": 2, "speed": 0, "long": 1, "cont": 1 },
+    "12": { "aer": 0, "vert": 0, "strength": 1, "ski": 0, "thr": 0, "vo2": 0, "speed": 0, "long": 0, "cont": 0 }
   },
   "acts": {
+    "12": [
+      { "n": "Evening Rock Climb", "d": "Mon 12 Oct", "t": "34m \u00b7 effort 19 \u00b7 two recordings, one session", "k": "str" }
+    ],
     "11": [
       { "n": "Middle Fork Half Marathon", "d": "Sat 10 Oct", "t": "race \u00b7 2:13:47 \u00b7 14th of 111 \u00b7 21.1 km trail \u00b7 522 m \u00b7 179 bpm \u00b7 negative split", "k": "aer" },
       { "n": "Evening Rock Climb", "d": "Wed 7 Oct", "t": "1h 27m \u00b7 effort 35", "k": "str" },
