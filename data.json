@@ -1,6 +1,6 @@
 {
-  "stamp": "2026-10-15T23:30",
-  "through": "15 Oct 2026",
+  "stamp": "2026-10-16T22:30",
+  "through": "16 Oct 2026",
   "weeks": {
     "1": { "aer": 227, "vert": 577, "strength": 3, "ski": 0, "thr": 1, "vo2": 0, "speed": 1, "long": 0, "cont": 0 },
     "2": { "aer": 666, "vert": 1200, "strength": 1, "ski": 0, "thr": 0, "vo2": 0, "speed": 1, "long": 1, "cont": 1 },
@@ -13,10 +13,11 @@
     "9": { "aer": 1599, "vert": 2399, "strength": 1, "ski": 0, "thr": 0, "vo2": 0, "speed": 0, "long": 1, "cont": 1 },
     "10": { "aer": 77, "vert": 206, "strength": 2, "ski": 0, "thr": 0, "vo2": 1, "speed": 0, "long": 1, "cont": 1 },
     "11": { "aer": 206, "vert": 719, "strength": 2, "ski": 0, "thr": 1, "vo2": 2, "speed": 0, "long": 1, "cont": 1 },
-    "12": { "aer": 0, "vert": 0, "strength": 3, "ski": 0, "thr": 0, "vo2": 0, "speed": 0, "long": 0, "cont": 0 }
+    "12": { "aer": 58, "vert": 75, "strength": 3, "ski": 0, "thr": 0, "vo2": 0, "speed": 0, "long": 0, "cont": 0 }
   },
   "acts": {
     "12": [
+      { "n": "Evening Run", "d": "Fri 16 Oct", "t": "58m \u00b7 10.1 km \u00b7 75 m \u00b7 168 bpm \u00b7 steady, mostly 166\u2013176", "k": "aer" },
       { "n": "Evening Rock Climb", "d": "Thu 15 Oct", "t": "1h 13m \u00b7 effort 26", "k": "str" },
       { "n": "Evening Rock Climb", "d": "Wed 14 Oct", "t": "1h 12m \u00b7 effort 28", "k": "str" },
       { "n": "Evening Rock Climb", "d": "Mon 12 Oct", "t": "34m \u00b7 effort 19 \u00b7 two recordings, one session", "k": "str" }
