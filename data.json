@@ -14,7 +14,7 @@
     "10": { "aer": 77, "vert": 206, "strength": 2, "ski": 0, "thr": 0, "vo2": 1, "speed": 0, "long": 1, "cont": 1 },
     "11": { "aer": 206, "vert": 719, "strength": 2, "ski": 0, "thr": 1, "vo2": 2, "speed": 0, "long": 1, "cont": 1 },
     "12": { "aer": 98, "vert": 243, "strength": 4, "ski": 0, "thr": 0, "vo2": 0, "speed": 0, "long": 0, "cont": 0 },
-    "13": { "aer": 116, "vert": 410, "strength": 1, "ski": 0, "thr": 1, "vo2": 0, "speed": 0, "long": 0, "cont": 0 }
+    "13": { "aer": 116, "vert": 410, "strength": 1, "ski": 0, "thr": 1, "vo2": 0, "speed": 0, "long": 1, "cont": 1 }
   },
   "acts": {
     "13": [
