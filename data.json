@@ -17,13 +17,13 @@
     "13": { "aer": 152, "vert": 588, "strength": 1, "ski": 0, "thr": 2, "vo2": 0, "speed": 0, "long": 1, "cont": 1 },
     "14": { "aer": 0, "vert": 0, "strength": 2, "ski": 0, "thr": 0, "vo2": 0, "speed": 0, "long": 0, "cont": 0 },
     "15": { "aer": 59, "vert": 38, "strength": 3, "ski": 0, "thr": 1, "vo2": 0, "speed": 0, "long": 0, "cont": 0 },
-    "16": { "aer": 69, "vert": 181, "strength": 1, "ski": 0, "thr": 0, "vo2": 1, "speed": 0, "long": 0, "cont": 0 }
+    "16": { "aer": 69, "vert": 181, "strength": 1, "ski": 0, "thr": 0, "vo2": 1, "speed": 1, "long": 0, "cont": 0 }
   },
   "acts": {
     "16": [
-      { "n": "Night Run", "d": "Tue 10 Nov", "t": "19m \u00b7 2.8 km \u00b7 80 m \u00b7 166 bpm \u00b7 easy, run home", "k": "aer" },
+      { "n": "Hill repeats home", "d": "Tue 10 Nov", "t": "19m \u00b7 2.8 km \u00b7 80 m \u00b7 166 bpm \u00b7 short hill repeats, ~3 min above 177", "k": "aer" },
       { "n": "Evening Rock Climb", "d": "Tue 10 Nov", "t": "1h 55m \u00b7 effort 41 \u00b7 top rope", "k": "str" },
-      { "n": "Evening Run", "d": "Tue 10 Nov", "t": "18m \u00b7 2.9 km \u00b7 77 m \u00b7 166 bpm \u00b7 easy, run to the gym", "k": "aer" },
+      { "n": "Hill repeats to the gym", "d": "Tue 10 Nov", "t": "18m \u00b7 2.9 km \u00b7 77 m \u00b7 166 bpm \u00b7 short hill repeats, ~3.5 min above 177", "k": "aer" },
       { "n": "Night Run", "d": "Mon 9 Nov", "t": "32m \u00b7 6.3 km \u00b7 24 m \u00b7 185 bpm \u00b7 San Francisco \u00b7 hard, 18 min above 187", "k": "aer" }
     ],
     "15": [
